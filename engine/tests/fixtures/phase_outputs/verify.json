@@ -1,0 +1,120 @@
+{
+ "data_mode": "live",
+ "detail": [
+  {
+   "code": "000032",
+   "current_pct": 2.06,
+   "current_price": 13.89,
+   "entry_return_pct": -0.79,
+   "intraday_pct": 2.06,
+   "name": "深桑达A",
+   "outcome": "亏损",
+   "scores": {
+    "1": 88.0,
+    "2": 91.0,
+    "3": 95.0
+   },
+   "sel_price": 14.0,
+   "signal_type": "strongest",
+   "turnover": 1.75,
+   "volume_ratio": 1.17
+  },
+  {
+   "code": "000055",
+   "current_pct": 1.13,
+   "current_price": 3.58,
+   "entry_return_pct": -4.53,
+   "intraday_pct": 1.13,
+   "name": "方大集团",
+   "outcome": "亏损",
+   "scores": {
+    "1": 76.0,
+    "2": 72.0,
+    "3": null
+   },
+   "sel_price": 3.75,
+   "signal_type": "pulse",
+   "turnover": 1.23,
+   "volume_ratio": 1.22
+  },
+  {
+   "code": "000088",
+   "current_pct": 1.09,
+   "current_price": 4.63,
+   "entry_return_pct": -49.12,
+   "intraday_pct": 1.09,
+   "name": "盐田港",
+   "outcome": "亏损",
+   "scores": {
+    "1": null,
+    "2": null,
+    "3": 70.0
+   },
+   "sel_price": 9.1,
+   "signal_type": "pulse",
+   "turnover": 1.22,
+   "volume_ratio": 0.87
+  }
+ ],
+ "deviations": [
+  {
+   "actual_pct": 1.09,
+   "code": "000088",
+   "name": "盐田港",
+   "predicted": "暴跌日不操作"
+  }
+ ],
+ "groups": {
+  "最强+持续": {
+   "avg_loss": -0.79,
+   "avg_profit": 0,
+   "losses": 1,
+   "verified": 1,
+   "winrate": 0.0,
+   "wins": 0
+  },
+  "脉冲信号": {
+   "avg_loss": -26.82,
+   "avg_profit": 0,
+   "losses": 2,
+   "verified": 2,
+   "winrate": 0.0,
+   "wins": 0
+  }
+ },
+ "persisted": true,
+ "sel_date": "2026-09-11",
+ "stats": {
+  "consensus": {
+   "avg_loss": -0.79,
+   "avg_profit": 0,
+   "losses": 1,
+   "verified": 1,
+   "winrate": 0.0,
+   "wins": 0
+  },
+  "pulse": {
+   "avg_loss": -26.82,
+   "avg_profit": 0,
+   "losses": 2,
+   "verified": 2,
+   "winrate": 0.0,
+   "wins": 0
+  },
+  "total": {
+   "avg_loss": -18.15,
+   "avg_profit": 0,
+   "losses": 3,
+   "verified": 3,
+   "winrate": 0.0,
+   "wins": 0
+  }
+ },
+ "status": "ok",
+ "verify_date": "2026-09-14",
+ "verify_time": "10:22",
+ "warnings": [
+  "脉冲信号胜率仅0.0%（低于40%阈值），建议只操作持续信号标的",
+  "总体胜率仅0.0%（低于40%），建议空仓观望等待企稳"
+ ]
+}

@@ -1,0 +1,371 @@
+{
+  "version_name": "backtest",
+  "note": "回测优化版：涨幅下限 1.8→2.5、量比 [2.3, 3.5]、一档线 70→75、非多头直接三档（降档 69→49）、新增 5日累计<3% 扣5分",
+  "hard_filter": {
+    "price_min": 3.0,
+    "price_max": 105.0,
+    "amplitude_max": 15.0,
+    "change_pct_min": -7.0,
+    "change_pct_loose": [
+      1.0,
+      6.0
+    ],
+    "exclude_st_pattern": "ST|\\*ST|^S|退",
+    "exclude_bse_prefix": "92",
+    "one_word_board_pct": 9.0
+  },
+  "profile_filter": {
+    "change_pct": [
+      2.5,
+      5.2
+    ],
+    "volume_ratio": [
+      2.3,
+      3.5
+    ],
+    "turnover": [
+      4.2,
+      10.5
+    ],
+    "amplitude_max": 13.0,
+    "price_ge_avg": true
+  },
+  "risk_filter": {
+    "volume_ratio_hard_max": 6.8,
+    "turnover_hard_max": 17.5
+  },
+  "form_filter": {
+    "upper_shadow_ratio": 0.8,
+    "close_high_ratio": 0.95,
+    "body_ratio_min": 0.4,
+    "pass_threshold": 2
+  },
+  "deep_filter": {
+    "kline_days": 65,
+    "vol_avg_days": 5,
+    "ma20_slope_lookback": 5,
+    "vol_mult_normalize": true
+  },
+  "exclusion": {
+    "deep_trend_threshold": -30.0,
+    "pulse_gain_ratio": 0.6,
+    "pulse_shadow_body": 0.5,
+    "market_change_threshold": -1.5,
+    "market_ratio_threshold": 0.8,
+    "market_decline_lookback": 3
+  },
+  "scoring": {
+    "bonus": {
+      "ma_bullish": 20,
+      "vol_mult_high": [
+        1.28,
+        20
+      ],
+      "vol_mult_mid": [
+        1.0,
+        10
+      ],
+      "consec_up": {
+        "le1": 15,
+        "le2": 10,
+        "le3": 5,
+        "gt3": 0
+      },
+      "cum_5d": {
+        "le8": 15,
+        "le12": 10,
+        "le15": 5,
+        "gt15": 0
+      },
+      "dist_low": {
+        "le15": 10,
+        "le25": 5,
+        "gt25": 0
+      },
+      "dist_high": {
+        "le_neg5": 5,
+        "gt_neg5": 0
+      },
+      "form_full": 10,
+      "form_pass": 5,
+      "market_ok_ok": 5,
+      "market_ok_only": 3,
+      "ma20_slope_up": 5
+    },
+    "penalty": {
+      "prev_1d": {
+        "gt7": -10,
+        "gt5": -5
+      },
+      "ma_deviation": {
+        "lt2": 0,
+        "le5": -5,
+        "gt5": -10
+      },
+      "stagnation": {
+        "vol_ratio_min": 2.0,
+        "gain_ratio": 0.6,
+        "score": -5
+      },
+      "long_shadow": {
+        "vol_ratio_min": 2.0,
+        "shadow_body": 0.5,
+        "score": -5
+      },
+      "vol_shrink": {
+        "threshold": 1.0,
+        "score": -5
+      },
+      "cum_5d_low": {
+        "threshold": 3.0,
+        "score": -5
+      }
+    },
+    "tier_lock": {
+      "enabled": true,
+      "max_score": 49
+    },
+    "tiers": {
+      "tier1_min": 75,
+      "tier2_min": 50
+    },
+    "intraday": {
+      "enabled": true,
+      "tail_window_min": 30,
+      "min_bars": 20,
+      "tail_vol_ratio_min": 1.5,
+      "tail_vol_ratio_score": 0,
+      "tail_gain_min": 0.3,
+      "tail_gain_score": 8,
+      "close_position_min": 0.9,
+      "close_position_score": 15,
+      "tail_new_high_score": 10,
+      "high_age_max": 0.85,
+      "stale_high_penalty": -8
+    }
+  },
+  "etf": {
+    "change_pct_min": 0.5,
+    "volume_ratio_min": 1.0,
+    "top_n": 8,
+    "codes": [
+      "159915",
+      "510300",
+      "510500",
+      "159919",
+      "512100",
+      "159922",
+      "510050",
+      "159949",
+      "512660",
+      "512480",
+      "159992",
+      "512010",
+      "512170",
+      "159881",
+      "588000",
+      "159869",
+      "560250",
+      "159667",
+      "562500",
+      "159995",
+      "515790",
+      "516160",
+      "515050",
+      "512690",
+      "512800",
+      "159766",
+      "515170",
+      "512680",
+      "515710",
+      "159825",
+      "512980",
+      "515030",
+      "562000",
+      "159605",
+      "513100",
+      "513500",
+      "159941",
+      "510880",
+      "512880",
+      "515180",
+      "159989",
+      "513050",
+      "159865",
+      "159790",
+      "159967",
+      "512580",
+      "159806",
+      "515080",
+      "159998",
+      "512120",
+      "516950",
+      "159855",
+      "159632",
+      "512220",
+      "516110",
+      "159840",
+      "159611",
+      "512610",
+      "560150",
+      "159885",
+      "159732",
+      "515950",
+      "512760",
+      "512970",
+      "159801",
+      "159996",
+      "515060",
+      "159871",
+      "512670",
+      "512640",
+      "512400",
+      "159966",
+      "512070",
+      "512200",
+      "159981",
+      "512710",
+      "515220",
+      "515230",
+      "515880",
+      "516150",
+      "159858",
+      "159969",
+      "512960",
+      "512770",
+      "512360"
+    ]
+  },
+  "rounds": {
+    "slots": [
+      "14:00",
+      "14:30",
+      "14:50"
+    ],
+    "boundaries": [
+      "14:15",
+      "14:40"
+    ]
+  },
+  "phases": {
+    "predict": "09:30",
+    "verify": "10:00",
+    "review": "15:05",
+    "iterate": "15:30"
+  },
+  "predict_rules": {
+    "red_decline_days": 2,
+    "yellow_open_threshold": -0.5,
+    "regime_thresholds": {
+      "BULL_TREND": {
+        "target_adj": 0.0,
+        "stop_adj": 0.0,
+        "score_adj": 0.0
+      },
+      "BULL_CORRECTION": {
+        "target_adj": -1.0,
+        "stop_adj": 0.5,
+        "score_adj": -3.0
+      },
+      "BEAR_TREND": {
+        "target_adj": 1.0,
+        "stop_adj": -0.5,
+        "score_adj": 5.0
+      },
+      "PANIC": {
+        "target_adj": 2.0,
+        "stop_adj": -1.0,
+        "score_adj": 10.0
+      },
+      "RECOVERY": {
+        "target_adj": -0.5,
+        "stop_adj": 0.0,
+        "score_adj": -2.0
+      }
+    },
+    "strategies": {
+      "up_consensus": {
+        "window": [
+          "10:30",
+          "11:30"
+        ],
+        "target_pct": 2.0,
+        "stop_pct": -2.0,
+        "risk": "低",
+        "position": "正常仓位",
+        "direction": "上午强，10:30-11:30冲高"
+      },
+      "up_pulse": {
+        "window": [
+          "10:00",
+          "10:30"
+        ],
+        "target_pct": 2.0,
+        "stop_pct": -2.0,
+        "risk": "中",
+        "position": "半仓",
+        "direction": "短冲高，见好就收"
+      },
+      "down_consensus": {
+        "window": [
+          "14:30",
+          "15:00"
+        ],
+        "target_pct": 1.0,
+        "stop_pct": -1.5,
+        "risk": "中",
+        "position": "半仓",
+        "direction": "午后修复，尾盘卖出"
+      },
+      "down_pulse": {
+        "window": [
+          "09:30",
+          "10:00"
+        ],
+        "target_pct": 1.0,
+        "stop_pct": -1.5,
+        "risk": "高",
+        "position": "轻仓",
+        "direction": "低开反弹，尽快离场"
+      },
+      "crash": {
+        "window": [
+          "--",
+          "--"
+        ],
+        "target_pct": 0.0,
+        "stop_pct": 0.0,
+        "risk": "极高",
+        "position": "空仓观望",
+        "direction": "暴跌日不操作"
+      }
+    }
+  },
+  "iterate": {
+    "trigger_interval": 3,
+    "empty_trend_days": 10,
+    "warning_pct": 80,
+    "notice_pct": 50,
+    "thresholds": {
+      "window_vs_snap": 10,
+      "window_vs_close": 10,
+      "high_vs_window": 15,
+      "low_winrate": 40,
+      "low_high_winrate": 50,
+      "group_market": 20,
+      "group_signal": 15,
+      "morning_ratio": 0.6,
+      "afternoon_ratio": 0.6,
+      "discipline_target_pct": 1.5,
+      "avg_profit_cap": 10.0,
+      "discipline_window": [
+        "09:30",
+        "11:30"
+      ]
+    }
+  },
+  "budget": {
+    "deep_budget_sec": 120.0,
+    "max_deep_candidates": 0
+  }
+}

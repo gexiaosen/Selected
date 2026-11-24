@@ -1,0 +1,126 @@
+[
+ {
+  "compare": null,
+  "date": "2026-09-11",
+  "iterate": null,
+  "predict": {
+   "is_empty_day": 0,
+   "market_env": {
+    "down_count": 2310,
+    "flat_count": 210,
+    "light": "绿灯",
+    "ratio": 1.16,
+    "ratio_ok": true,
+    "sh_3d_decline_count": 1,
+    "sh_3d_trend": "震荡",
+    "sh_amplitude": 0.86,
+    "sh_change_pct": 0.42,
+    "sh_consecutive_decline": false,
+    "sh_d1": 0.31,
+    "sh_d2": -0.22,
+    "sh_ok": true,
+    "sh_price": 3120.5,
+    "up_count": 2680
+   },
+   "overall": [],
+   "predict_date": "2026-09-14",
+   "predict_time": "09:30",
+   "sel_date": "2026-09-11",
+   "status": "ok",
+   "stocks": [
+    {
+     "code": "000032",
+     "name": "深桑达A",
+     "open_pct": 0.5,
+     "predict_direction": "上午强，10:30-11:30冲高",
+     "risk_level": "中",
+     "sel_price": 14,
+     "sell_window_end": "10:30",
+     "sell_window_start": "10:00",
+     "signal_type": "strongest",
+     "stop_loss_price": 13.72,
+     "target_price": 14.28
+    },
+    {
+     "code": "000055",
+     "name": "方大集团",
+     "open_pct": -0.3,
+     "predict_direction": "低开反弹，尽快离场",
+     "risk_level": "高",
+     "sel_price": 3.8,
+     "sell_window_end": "10:30",
+     "sell_window_start": "10:00",
+     "signal_type": "pulse",
+     "stop_loss_price": 3.72,
+     "target_price": 3.88
+    }
+   ]
+  },
+  "review": {
+   "four_layer": {
+    "ceiling": {
+     "avg_profit": -2.29,
+     "total": 2,
+     "winrate": 50,
+     "wins": 1
+    },
+    "close": {
+     "avg_profit": -3.29,
+     "total": 2,
+     "winrate": 0,
+     "wins": 0
+    },
+    "disciplined": {
+     "avg_profit": -2.75,
+     "total": 2,
+     "winrate": 50,
+     "wins": 1
+    },
+    "gap": {
+     "avg_profit": -0.46,
+     "total": 2,
+     "winrate": 0,
+     "wins": 0
+    },
+    "snapshot": {
+     "avg_profit": -4.17,
+     "total": 2,
+     "winrate": 0,
+     "wins": 0
+    },
+    "window": {
+     "avg_profit": -2.68,
+     "total": 2,
+     "winrate": 50,
+     "wins": 1
+    }
+   },
+   "review_time": "11:56",
+   "sel_date": "2026-09-11"
+  },
+  "rounds": [
+   {
+    "run_time": "2026-09-11 14:15:00",
+    "slot": 1,
+    "slot_label": "14:15",
+    "tier1_count": 2,
+    "tier2_count": 0
+   },
+   {
+    "run_time": "2026-09-11 14:30:00",
+    "slot": 2,
+    "slot_label": "14:30",
+    "tier1_count": 1,
+    "tier2_count": 0
+   },
+   {
+    "run_time": "2026-09-11 14:45:00",
+    "slot": 3,
+    "slot_label": "14:45",
+    "tier1_count": 1,
+    "tier2_count": 0
+   }
+  ],
+  "verify": null
+ }
+]

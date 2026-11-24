@@ -1,0 +1,14 @@
+[
+  {
+    "holding_count" : 5,
+    "id" : 1,
+    "name" : "默认分组",
+    "stock_count" : 8
+  },
+  {
+    "holding_count" : 0,
+    "id" : 2,
+    "name" : "核心持仓",
+    "stock_count" : 0
+  }
+]

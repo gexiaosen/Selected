@@ -1,0 +1,192 @@
+name: Release
+
+# 推 tag 即全自动出包发布：
+#   git tag v1.0.0 && git push origin v1.0.0
+#
+# 链路：tag↔plist 校验 → 构建号递增校验 → 证书导入 → 全量回归 + 出包（build_app.sh）
+#      → dmg → Sparkle EdDSA 签名 → 建 Release → 生成 appcast 回传。
+#
+# 为什么可以没有 Apple Developer ID：Sparkle 2 的更新校验是「EdDSA 有效 *或*
+# 新旧包 Apple 签名一致」二选一。DMG 用 EdDSA 私钥签名后走 EdDSA 通道即可安装；
+# 包本身用 Apple Development 证书签名（复用 MiscKit 的同一张证书，一年一续）。
+on:
+  push:
+    tags: ['v*.*.*']
+
+permissions:
+  contents: write
+
+env:
+  SPARKLE_VERSION: '2.10.1'
+  SPARKLE_DIST: 'https://github.com/sparkle-project/Sparkle/releases/download'
+
+jobs:
+  release:
+    name: Package & Publish (macOS arm64)
+    runs-on: macos-26
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 发布纪律：tag 与 Info.plist 必须严格同步，否则 Sparkle 客户端的
+      # 版本比较就失去了事实来源；build 号是 Sparkle 的排序键。
+      - name: Verify tag matches Info.plist
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          VERSION="${TAG#v}"
+          PLIST_VERSION="$(plutil -extract CFBundleShortVersionString raw -o - SelectedApp/Resources/Info.plist)"
+          BUILD="$(plutil -extract CFBundleVersion raw -o - SelectedApp/Resources/Info.plist)"
+          [ "$VERSION" = "$PLIST_VERSION" ] || { echo "tag($VERSION) 与 Info.plist($PLIST_VERSION) 不一致，先同步再打 tag"; exit 1; }
+          [[ "$BUILD" =~ ^[0-9]{8}(\.[0-9]+)?$ ]] || { echo "CFBundleVersion 格式不对（yyyyMMdd[.N]）: $BUILD"; exit 1; }
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "BUILD=$BUILD" >> "$GITHUB_ENV"
+
+      # Sparkle 按 CFBundleVersion 排序；不递增等于发了"旧版本"，客户端会拒绝更新。
+      - name: Verify build number increments
+        run: |
+          set +e
+          curl -fsSL "https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/appcast.xml" -o /tmp/prev-appcast.xml 2>/dev/null
+          RC=$?
+          set -e
+          if [ "$RC" -ne 0 ]; then
+            echo "首个 Release，无历史 appcast，跳过递增校验"
+            exit 0
+          fi
+          PREV_BUILD="$(sed -n -e 's/.*<sparkle:version>\([0-9.]*\)<\/sparkle:version>.*/\1/p' \
+                               -e 's/.*sparkle:version="\([0-9.]*\)".*/\1/p' /tmp/prev-appcast.xml \
+                          | sort -V | tail -1)"
+          if [ -n "$PREV_BUILD" ]; then
+            # 允许 yyyyMMdd / yyyyMMdd.N：取排序后的最大值，必须严格大于上一版（相等也算失败）
+            if [ "$(printf '%s\n%s\n' "$PREV_BUILD" "$BUILD" | sort -V | tail -1)" = "$PREV_BUILD" ]; then
+              echo "CFBundleVersion($BUILD) 必须大于上一版($PREV_BUILD)：bump 后重打 tag"
+              exit 1
+            fi
+          fi
+
+      # 签名身份：复用 MiscKit 的 Apple Development 证书（同一张证书可签多个 App）。
+      # 证书一年到期，到期后重跑 SelectedApp/Scripts/upload-signing-cert.sh。
+      # secret 缺失时不失败（首次配置前仍能发版），只告警并退回 ad-hoc。
+      - name: Prepare signing identity
+        id: signing
+        env:
+          CERT_P12_BASE64: ${{ secrets.SELECTED_SIGNING_CERT_P12 }}
+          CERT_PASSWORD: ${{ secrets.SELECTED_SIGNING_CERT_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [ -z "${CERT_P12_BASE64}" ]; then
+            echo "::warning title=未配置签名证书::回退 ad-hoc —— 重装后文件夹权限与钥匙串授权会重新询问"
+            exit 0
+          fi
+          if [ -z "${CERT_PASSWORD}" ]; then
+            echo "::error title=缺 CERT 密码::已有 SELECTED_SIGNING_CERT_P12 却没有 SELECTED_SIGNING_CERT_PASSWORD"
+            exit 1
+          fi
+          KEYCHAIN="${RUNNER_TEMP}/signing.keychain-db"
+          KEYCHAIN_PASS="$(uuidgen)"
+          CERT_PATH="${RUNNER_TEMP}/signing.p12"
+          printf '%s' "${CERT_P12_BASE64}" | tr -d '[:space:]' | base64 --decode > "${CERT_PATH}"
+          security create-keychain -p "${KEYCHAIN_PASS}" "${KEYCHAIN}"
+          security set-keychain-settings -lut 21600 "${KEYCHAIN}"
+          security unlock-keychain -p "${KEYCHAIN_PASS}" "${KEYCHAIN}"
+          if curl -fsSL -o "${RUNNER_TEMP}/wwdr.cer" \
+               https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer; then
+            security add-certificates -k "${KEYCHAIN}" "${RUNNER_TEMP}/wwdr.cer" || true
+          fi
+          security import "${CERT_PATH}" -k "${KEYCHAIN}" -P "${CERT_PASSWORD}" \
+            -T /usr/bin/codesign -T /usr/bin/security
+          security set-key-partition-list -S apple-tool:,apple:,codesign: \
+            -s -k "${KEYCHAIN_PASS}" "${KEYCHAIN}" > /dev/null
+          security list-keychains -d user -s "${KEYCHAIN}" \
+            $(security list-keychains -d user | tr -d '"')
+          rm -f "${CERT_PATH}"
+          IDENTITY="$(security find-identity -v -p codesigning "${KEYCHAIN}" \
+            | sed -n 's/.*"\(.*\)"/\1/p' | head -1)"
+          if [ -z "${IDENTITY}" ]; then
+            IDENTITY="$(security find-identity -p codesigning "${KEYCHAIN}" \
+              | sed -n 's/.*"\(.*\)"/\1/p' | sed 's/ *(CSSMERR[^)]*)//' | head -1)"
+          fi
+          if [ -z "${IDENTITY}" ]; then
+            echo "::error title=证书不可用::p12 导入成功但列不出可签名身份，检查 p12 是否含私钥"
+            exit 1
+          fi
+          echo "签名身份: ${IDENTITY}"
+          echo "SELECTED_SIGN_IDENTITY=${IDENTITY}" >> "${GITHUB_ENV}"
+
+      # build_app.sh 的 release 模式带全量回归闸门 + 逐层签名（含 Sparkle.framework），
+      # 这里用 --no-commit：版本号已在 plist 里、tag 已确定，CI 不再自增/提交。
+      - name: Build app (regression + package)
+        run: SELECTED_SIGN_IDENTITY="${SELECTED_SIGN_IDENTITY:-}" ./SelectedApp/build_app.sh release --no-commit
+
+      - name: Verify signature identity
+        run: |
+          set -euo pipefail
+          APP="SelectedApp/dist/Selected.app"
+          codesign -dv --verbose=4 "$APP" 2>&1 | grep -E '^(Identifier|Signature|Authority|TeamIdentifier)' || true
+          DR="$(codesign -dr- "$APP" 2>&1 | tail -1)"
+          echo "DR: $DR"
+          if [ -n "${SELECTED_SIGN_IDENTITY:-}" ]; then
+            echo "$DR" | grep -q 'anchor apple generic' || {
+              echo "::error title=签名未生效::期望 ${SELECTED_SIGN_IDENTITY}，实际 DR 仍是 cdhash"; exit 1; }
+          else
+            echo "::warning title=当前为 ad-hoc 包::重装后需要重新授权文件夹与钥匙串"
+          fi
+          codesign --verify --deep --strict "$APP"
+
+      - name: Cleanup signing keychain
+        if: always()
+        run: |
+          KEYCHAIN="${RUNNER_TEMP}/signing.keychain-db"
+          [ -e "$KEYCHAIN" ] || exit 0
+          security delete-keychain "$KEYCHAIN" || true
+
+      - name: Package .dmg
+        run: |
+          ./SelectedApp/Scripts/make-dmg.sh \
+            SelectedApp/dist/Selected.app \
+            "SelectedApp/dist/Selected-v${VERSION}-arm64.dmg"
+
+      # EdDSA 私钥只存在于 GitHub Secrets：泄露面仅限更新通道签名，与 Apple 证书无关。
+      - name: Sign dmg with Sparkle EdDSA key
+        env:
+          SPARKLE_PRIVATE_ED_KEY: ${{ secrets.SPARKLE_PRIVATE_ED_KEY }}
+        run: |
+          [ -n "$SPARKLE_PRIVATE_ED_KEY" ] || { echo "缺 secret: SPARKLE_PRIVATE_ED_KEY"; exit 1; }
+          curl -fsSL -o /tmp/sparkle.tar.xz "${SPARKLE_DIST}/${SPARKLE_VERSION}/Sparkle-${SPARKLE_VERSION}.tar.xz"
+          tar -xf /tmp/sparkle.tar.xz -C /tmp bin/sign_update
+          KEY_FILE="$(mktemp)"
+          trap 'rm -f "$KEY_FILE"' EXIT
+          printf '%s' "$SPARKLE_PRIVATE_ED_KEY" | tr -d '[:space:]' > "$KEY_FILE"
+          chmod 600 "$KEY_FILE"
+          /tmp/bin/sign_update "SelectedApp/dist/Selected-v${VERSION}-arm64.dmg" \
+            -f "$KEY_FILE" > /tmp/sparkle-signature.txt
+          cat /tmp/sparkle-signature.txt
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ./SelectedApp/Scripts/release-notes.sh "$VERSION" > /tmp/release-notes.md
+          gh release create "$GITHUB_REF_NAME" \
+            "SelectedApp/dist/Selected-v${VERSION}-arm64.dmg" \
+            --title "Selected ${VERSION}" \
+            --notes-file /tmp/release-notes.md \
+            --latest
+
+      # appcast 的 SUFeedURL 指向 releases/latest/download/appcast.xml，
+      # 每次发版覆盖同 asset 名，客户端永远拿到最新一条目。
+      - name: Generate & upload appcast.xml
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DMG_NAME="Selected-v${VERSION}-arm64.dmg"
+          DMG_PATH="SelectedApp/dist/${DMG_NAME}"
+          DMG_SIZE="$(stat -f%z "$DMG_PATH")"
+          SIG="$(cat /tmp/sparkle-signature.txt)"
+          python3 ./SelectedApp/Scripts/changelog-to-html.py "$VERSION" > /tmp/appcast-notes.html
+          python3 ./SelectedApp/Scripts/make-appcast.py \
+            --version "$VERSION" --build "$BUILD" --repo "$GITHUB_REPOSITORY" \
+            --dmg-name "$DMG_NAME" --dmg-size "$DMG_SIZE" --signature "$SIG" \
+            --notes-html /tmp/appcast-notes.html --out /tmp/appcast.xml
+          gh release upload "$GITHUB_REF_NAME" /tmp/appcast.xml --clobber
+          echo "✅ 发布完成：Sparkle 客户端将于每日静默检查时发现 ${VERSION}"

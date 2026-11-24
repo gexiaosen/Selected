@@ -1,0 +1,266 @@
+{
+ "buys": [
+  "安孚科技"
+ ],
+ "date": "2026-09-21",
+ "judged": 8,
+ "market_light": "黄灯",
+ "market_trend": "连续3日下跌（昨日-1.18%且今日-0.19%）",
+ "results": [
+  {
+   "action": "买入",
+   "baseline_price": 43.62,
+   "change_pct": 7.41,
+   "code": "603031",
+   "cost_price": null,
+   "is_holding": false,
+   "market_light": "黄灯",
+   "name": "安孚科技",
+   "penalty_details": [],
+   "position_advice": "轻仓",
+   "price": 43.62,
+   "risk_level": "高",
+   "score": 105,
+   "score_details": [
+    "均线多头 +20",
+    "量能1.5 +20",
+    "连涨1天 +15",
+    "5日累计3.39% +15",
+    "距低点14.82% +10",
+    "距高点-24.56% +5",
+    "形态满分 +10",
+    "大盘OK +5",
+    "MA20上翘 +5"
+   ],
+   "sell_window": "09:30~10:00",
+   "shares": null,
+   "stop_loss_price": 42.97,
+   "target_price": 44.06
+  },
+  {
+   "action": "观察",
+   "baseline_price": null,
+   "change_pct": 4.11,
+   "code": "688690",
+   "cost_price": null,
+   "is_holding": false,
+   "market_light": "黄灯",
+   "name": "纳微科技",
+   "penalty_details": [],
+   "position_advice": null,
+   "price": 42.8,
+   "risk_level": null,
+   "score": 80,
+   "score_details": [
+    "均线多头 +20",
+    "量能86.01 +20",
+    "连涨1天 +15",
+    "5日累计15.89% +0",
+    "距低点21.25% +5",
+    "距高点-6.86% +5",
+    "形态满分 +10",
+    "大盘OK +5"
+   ],
+   "sell_window": null,
+   "shares": null,
+   "stop_loss_price": null,
+   "target_price": null
+  },
+  {
+   "action": "回避",
+   "baseline_price": 16.0,
+   "change_pct": 2.06,
+   "code": "000032",
+   "cost_price": null,
+   "is_holding": false,
+   "market_light": "黄灯",
+   "name": "深桑达A",
+   "penalty_details": [
+    "MA偏离1.56% 命中lt2 不扣分(即将修复)",
+    "5日累计-2.05%<3.0% 动能不足 扣-5",
+    "均线未多头排列 原分65→锁定49分(三档(排除))"
+   ],
+   "position_advice": "半仓",
+   "price": 13.89,
+   "risk_level": "中",
+   "score": 49,
+   "score_details": [
+    "均线不达标 +0",
+    "量能1.17 +10",
+    "连涨1天 +15",
+    "5日累计-2.05% +15",
+    "距低点2.06% +10",
+    "距高点-45.91% +5",
+    "形态满分 +10",
+    "大盘OK +5"
+   ],
+   "sell_window": "10:00~10:30",
+   "shares": null,
+   "stop_loss_price": 15.0,
+   "target_price": 17.5
+  },
+  {
+   "action": "止盈卖出",
+   "baseline_price": 8.0,
+   "change_pct": 1.09,
+   "code": "000088",
+   "cost_price": 8.5,
+   "is_holding": true,
+   "market_light": "黄灯",
+   "name": "盐田港",
+   "penalty_details": [
+    "5日均量倍数0.87<1.0 量能萎缩 扣-5",
+    "5日累计1.76%<3.0% 动能不足 扣-5"
+   ],
+   "position_advice": null,
+   "price": 4.63,
+   "risk_level": null,
+   "score": 70,
+   "score_details": [
+    "均线多头 +20",
+    "量能0.87 +0",
+    "连涨1天 +15",
+    "5日累计1.76% +15",
+    "距低点4.51% +10",
+    "距高点-0.64% +0",
+    "形态满分 +10",
+    "大盘OK +5",
+    "MA20上翘 +5"
+   ],
+   "sell_window": null,
+   "shares": 1000.0,
+   "stop_loss_price": 0.01,
+   "target_price": 0.01
+  },
+  {
+   "action": "止损卖出",
+   "baseline_price": 11.5,
+   "change_pct": 1.48,
+   "code": "000153",
+   "cost_price": 12.0,
+   "is_holding": true,
+   "market_light": "黄灯",
+   "name": "丰原药业",
+   "penalty_details": [
+    "MA偏离0.0% 命中lt2 不扣分(即将修复)",
+    "5日累计-1.59%<3.0% 动能不足 扣-5",
+    "均线未多头排列 原分70→锁定49分(三档(排除))"
+   ],
+   "position_advice": null,
+   "price": 6.17,
+   "risk_level": null,
+   "score": 49,
+   "score_details": [
+    "均线不达标 +0",
+    "量能1.22 +10",
+    "连涨1天 +15",
+    "5日累计-1.59% +15",
+    "距低点4.22% +10",
+    "距高点-7.63% +5",
+    "形态满分 +10",
+    "大盘OK +5",
+    "MA20上翘 +5"
+   ],
+   "sell_window": null,
+   "shares": 500.0,
+   "stop_loss_price": 9999.0,
+   "target_price": 9999.0
+  },
+  {
+   "action": "持有",
+   "baseline_price": 7.4,
+   "change_pct": 3.28,
+   "code": "600719",
+   "cost_price": 7.5,
+   "is_holding": true,
+   "market_light": "黄灯",
+   "name": "大连热电",
+   "penalty_details": [],
+   "position_advice": null,
+   "price": 7.87,
+   "risk_level": null,
+   "score": 105,
+   "score_details": [
+    "均线多头 +20",
+    "量能1.75 +20",
+    "连涨1天 +15",
+    "5日累计3.55% +15",
+    "距低点14.06% +10",
+    "距高点-20.42% +5",
+    "形态满分 +10",
+    "大盘OK +5",
+    "MA20上翘 +5"
+   ],
+   "sell_window": null,
+   "shares": 600.0,
+   "stop_loss_price": 0.01,
+   "target_price": 9999.0
+  },
+  {
+   "action": "清仓卖出",
+   "baseline_price": 20.5,
+   "change_pct": 6.27,
+   "code": "603936",
+   "cost_price": 21.0,
+   "is_holding": true,
+   "market_light": "黄灯",
+   "name": "博敏电子",
+   "penalty_details": [
+    "前日涨10.01%>7% 扣-10(昨天已大涨)"
+   ],
+   "position_advice": null,
+   "price": 22.19,
+   "risk_level": null,
+   "score": 55,
+   "score_details": [
+    "打分跌破60：动能衰竭，建议清仓",
+    "均线多头 +20",
+    "量能2.17 +20",
+    "连涨4天 +0",
+    "5日累计26.22% +0",
+    "距低点38.86% +0",
+    "距高点-20.78% +5",
+    "形态满分 +10",
+    "大盘OK +5",
+    "MA20上翘 +5"
+   ],
+   "sell_window": null,
+   "shares": 300.0,
+   "stop_loss_price": 0.01,
+   "target_price": 9999.0
+  },
+  {
+   "action": "数据缺失",
+   "baseline_price": null,
+   "code": "999998",
+   "market_light": "黄灯",
+   "name": "不存在",
+   "penalty_details": [],
+   "position_advice": null,
+   "risk_level": null,
+   "score": null,
+   "score_details": [
+    "行情获取失败"
+   ],
+   "sell_window": null,
+   "stop_loss_price": null,
+   "target_price": null
+  }
+ ],
+ "sells": [
+  [
+   "止盈卖出",
+   "盐田港"
+  ],
+  [
+   "止损卖出",
+   "丰原药业"
+  ],
+  [
+   "清仓卖出",
+   "博敏电子"
+  ]
+ ],
+ "status": "ok",
+ "summary": "买入 1 · 卖出 3 · 大盘黄灯"
+}

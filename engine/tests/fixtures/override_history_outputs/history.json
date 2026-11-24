@@ -1,0 +1,19 @@
+[
+  {
+    "compare" : null,
+    "date" : "2026-09-21",
+    "iterate" : null,
+    "predict" : null,
+    "review" : null,
+    "rounds" : [
+      {
+        "run_time" : "2026-09-21 14:50:00",
+        "slot" : 3,
+        "slot_label" : "14:50",
+        "tier1_count" : 14,
+        "tier2_count" : 13
+      }
+    ],
+    "verify" : null
+  }
+]

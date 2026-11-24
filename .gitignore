@@ -1,0 +1,57 @@
+# Python 残留（参考实现已删除，留防误提交）
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Swift / SPM 构建产物
+.build/
+*.o
+dist/
+.DerivedData/
+
+# 打包中间产物残留（内嵌 Python 运行时已删，留防旧工作区误提交）
+SelectedApp/resources-staging/
+
+# 运行时数据
+# ⚠ 改为**整目录忽略**（2026-10-16 测试审查 B1）：原先只忽略 `data/*.sqlite*`，
+#   于是 data/ 下任何 csv/json/txt/导出物都不被忽略 —— 而 build_app.sh 每次打包
+#   都 `git add -A` 并 push 到**公开仓库**。历史上已真泄漏过一次测试库
+#   （engine/tests/.tmpdata_budget/selected.sqlite3，提交 e47b5b0 专门清理），
+#   而从公开历史里删文件**不等于删掉 blob**。
+#   开发库本身仍在磁盘上，只是不再进 git（要提交基线数据请显式 `git add -f`）。
+data/*
+!data/.gitkeep
+data/cache/
+data/logs/
+
+# 回归夹具：默认全忽略，黄金夹具逐条放行
+# ⚠ git 不能"忽略目录后再放行目录内文件"，所以忽略的是目录内容（/*）而非目录本身。
+# 黄金夹具（*_outputs/ 与 expected_scan_result*.json）手工捕获、不可再生，必须纳管；
+# 缺失时 swift test 会显式失败而非静默跳过。其余行情快照不纳管。
+engine/tests/fixtures/*
+!engine/tests/fixtures/*_outputs/
+!engine/tests/fixtures/calendar_index.json
+!engine/tests/fixtures/2026-09-14/
+engine/tests/fixtures/2026-09-14/*
+!engine/tests/fixtures/2026-09-14/expected_scan_result.json
+!engine/tests/fixtures/2026-09-14/expected_scan_result_wide.json
+engine/tests/.tmpdata/
+engine/tests/.tmpdata*/
+engine/analysis/.cache/
+
+# macOS
+.DS_Store
+# DMG 的 Finder 图标布局是二进制资产，必须入库（不然 clone 出来图标会按默认网格摆）
+!SelectedApp/Resources/DMG/DS_Store
+
+# 临时/工具/一次性产物目录
+.temp/
+SelectedApp/.temp/
+.workbuddy/
+.workbuddy-ai/
+.trae/
+outputs/
+
+# 视觉快照输出（Tools/visual_snapshot.sh）
+SelectedApp/.visual-snapshots/

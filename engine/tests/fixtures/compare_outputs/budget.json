@@ -1,0 +1,903 @@
+{
+ "available_slots": [
+  1,
+  2,
+  3
+ ],
+ "budget_limited_slots": [
+  2
+ ],
+ "date": "2026-09-17",
+ "etf_matrix": [
+  {
+   "changes": {
+    "1": 1.2,
+    "2": 1.2,
+    "3": 1.2
+   },
+   "code": "512480",
+   "name": "半导体ETF"
+  },
+  {
+   "changes": {
+    "1": 0.85,
+    "2": 0.85,
+    "3": 0.85
+   },
+   "code": "510300",
+   "name": "沪深300ETF"
+  }
+ ],
+ "excluded_table": [
+  {
+   "code": "600719",
+   "name": "大连热电",
+   "reasons": {
+    "1": "距高点-35.0%<-30% 深度下降趋势"
+   },
+   "slots": [
+    1
+   ]
+  }
+ ],
+ "funnel_table": [
+  {
+   "after_form_filter": 40,
+   "after_hard_filter": 800,
+   "after_profile_filter": 50,
+   "excluded_count": 5,
+   "final_count": 13,
+   "slot": 1,
+   "tier1_count": 7,
+   "tier2_count": 6,
+   "total_scanned": 5223
+  },
+  {
+   "after_form_filter": 40,
+   "after_hard_filter": 800,
+   "after_profile_filter": 50,
+   "excluded_count": 5,
+   "final_count": 13,
+   "slot": 2,
+   "tier1_count": 6,
+   "tier2_count": 7,
+   "total_scanned": 5223
+  },
+  {
+   "after_form_filter": 40,
+   "after_hard_filter": 800,
+   "after_profile_filter": 50,
+   "excluded_count": 5,
+   "final_count": 13,
+   "slot": 3,
+   "tier1_count": 5,
+   "tier2_count": 8,
+   "total_scanned": 5223
+  }
+ ],
+ "market_env_table": [
+  {
+   "down_count": 2300,
+   "flat_count": 400,
+   "label": "14:00",
+   "ratio_ok": true,
+   "sh_3d_trend": "前日+0.10% 昨日+0.20% 趋势正常",
+   "sh_change_pct": 0.5,
+   "sh_consecutive_decline": false,
+   "sh_ok": true,
+   "sh_price": 3900,
+   "slot": 1,
+   "up_count": 2500
+  },
+  {
+   "down_count": 2300,
+   "flat_count": 400,
+   "label": "14:30",
+   "ratio_ok": true,
+   "sh_3d_trend": "前日+0.10% 昨日+0.20% 趋势正常",
+   "sh_change_pct": 0.5,
+   "sh_consecutive_decline": false,
+   "sh_ok": true,
+   "sh_price": 3900,
+   "slot": 2,
+   "up_count": 2500
+  },
+  {
+   "down_count": 2300,
+   "flat_count": 400,
+   "label": "14:50",
+   "ratio_ok": true,
+   "sh_3d_trend": "前日+0.10% 昨日+0.20% 趋势正常",
+   "sh_change_pct": 0.5,
+   "sh_consecutive_decline": false,
+   "sh_ok": true,
+   "sh_price": 3900,
+   "slot": 3,
+   "up_count": 2500
+  }
+ ],
+ "signals": {
+  "002897": {
+   "budget_limited": false,
+   "name": "意华股份",
+   "scores": {
+    "1": 103,
+    "2": 103,
+    "3": 103
+   },
+   "signal_type": "strongest",
+   "signal_type_name": "最强信号",
+   "signal_verified": true,
+   "slots_available": [
+    1,
+    2,
+    3
+   ],
+   "slots_expected": [
+    1,
+    2,
+    3
+   ],
+   "tiers": {
+    "1": 1,
+    "2": 1,
+    "3": 1
+   },
+   "trend": "评分递增"
+  },
+  "002913": {
+   "budget_limited": false,
+   "name": "奥士康",
+   "scores": {
+    "1": 63,
+    "2": 63,
+    "3": 63
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "signal_verified": true,
+   "slots_available": [
+    1,
+    2,
+    3
+   ],
+   "slots_expected": [
+    1,
+    2,
+    3
+   ],
+   "tiers": {
+    "1": 2,
+    "2": 2,
+    "3": 2
+   },
+   "trend": "评分递增"
+  },
+  "300802": {
+   "budget_limited": false,
+   "name": "矩子科技",
+   "scores": {
+    "1": 85,
+    "2": 85,
+    "3": 85
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "signal_verified": true,
+   "slots_available": [
+    1,
+    2,
+    3
+   ],
+   "slots_expected": [
+    1,
+    2,
+    3
+   ],
+   "tiers": {
+    "1": 1,
+    "2": 2,
+    "3": 2
+   },
+   "trend": "评分递增"
+  },
+  "301096": {
+   "budget_limited": false,
+   "name": "百诚医药",
+   "scores": {
+    "1": 73,
+    "2": 73,
+    "3": 73
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "signal_verified": true,
+   "slots_available": [
+    1,
+    2,
+    3
+   ],
+   "slots_expected": [
+    1,
+    2,
+    3
+   ],
+   "tiers": {
+    "1": 2,
+    "2": 2,
+    "3": 2
+   },
+   "trend": "评分递增"
+  },
+  "301291": {
+   "budget_limited": false,
+   "name": "明阳电气",
+   "scores": {
+    "1": 98,
+    "2": 98,
+    "3": 98
+   },
+   "signal_type": "strongest",
+   "signal_type_name": "最强信号",
+   "signal_verified": true,
+   "slots_available": [
+    1,
+    2,
+    3
+   ],
+   "slots_expected": [
+    1,
+    2,
+    3
+   ],
+   "tiers": {
+    "1": 1,
+    "2": 1,
+    "3": 1
+   },
+   "trend": "评分递增"
+  },
+  "301393": {
+   "budget_limited": false,
+   "name": "昊帆生物",
+   "scores": {
+    "1": 88,
+    "2": 88,
+    "3": 88
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "signal_verified": true,
+   "slots_available": [
+    1,
+    2,
+    3
+   ],
+   "slots_expected": [
+    1,
+    2,
+    3
+   ],
+   "tiers": {
+    "1": 1,
+    "2": 1,
+    "3": 2
+   },
+   "trend": "评分递增"
+  },
+  "301607": {
+   "budget_limited": false,
+   "name": "富特科技",
+   "scores": {
+    "1": 83,
+    "2": 83,
+    "3": 83
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "signal_verified": true,
+   "slots_available": [
+    1,
+    2,
+    3
+   ],
+   "slots_expected": [
+    1,
+    2,
+    3
+   ],
+   "tiers": {
+    "1": 2,
+    "2": 2,
+    "3": 2
+   },
+   "trend": "评分递增"
+  },
+  "600596": {
+   "budget_limited": false,
+   "name": "新安股份",
+   "scores": {
+    "1": 65,
+    "2": 65,
+    "3": 65
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "signal_verified": true,
+   "slots_available": [
+    1,
+    2,
+    3
+   ],
+   "slots_expected": [
+    1,
+    2,
+    3
+   ],
+   "tiers": {
+    "1": 2,
+    "2": 2,
+    "3": 2
+   },
+   "trend": "评分递增"
+  },
+  "600719": {
+   "budget_limited": true,
+   "name": "大连热电",
+   "scores": {
+    "1": 110,
+    "2": 110,
+    "3": 110
+   },
+   "signal_type": "unverified",
+   "signal_type_name": "未验证（轮次不足）",
+   "signal_verified": false,
+   "slots_available": [
+    1,
+    2,
+    3
+   ],
+   "slots_expected": [
+    1,
+    2,
+    3
+   ],
+   "tiers": {
+    "1": 1,
+    "2": 1,
+    "3": 1
+   },
+   "trend": "评分递增"
+  },
+  "603139": {
+   "budget_limited": false,
+   "name": "康惠股份",
+   "scores": {
+    "1": 93,
+    "2": 93,
+    "3": 93
+   },
+   "signal_type": "strongest",
+   "signal_type_name": "最强信号",
+   "signal_verified": true,
+   "slots_available": [
+    1,
+    2,
+    3
+   ],
+   "slots_expected": [
+    1,
+    2,
+    3
+   ],
+   "tiers": {
+    "1": 1,
+    "2": 1,
+    "3": 1
+   },
+   "trend": "评分递增"
+  },
+  "603257": {
+   "budget_limited": false,
+   "name": "中国瑞林",
+   "scores": {
+    "1": 80,
+    "2": 80,
+    "3": 80
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "signal_verified": true,
+   "slots_available": [
+    1,
+    2,
+    3
+   ],
+   "slots_expected": [
+    1,
+    2,
+    3
+   ],
+   "tiers": {
+    "1": 2,
+    "2": 2,
+    "3": 2
+   },
+   "trend": "评分递增"
+  },
+  "603328": {
+   "budget_limited": false,
+   "name": "依顿电子",
+   "scores": {
+    "1": 83,
+    "2": 83,
+    "3": 83
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "signal_verified": true,
+   "slots_available": [
+    1,
+    2,
+    3
+   ],
+   "slots_expected": [
+    1,
+    2,
+    3
+   ],
+   "tiers": {
+    "1": 2,
+    "2": 2,
+    "3": 2
+   },
+   "trend": "评分递增"
+  },
+  "603920": {
+   "budget_limited": false,
+   "name": "世运电路",
+   "scores": {
+    "1": 93,
+    "2": 93,
+    "3": 93
+   },
+   "signal_type": "strongest",
+   "signal_type_name": "最强信号",
+   "signal_verified": true,
+   "slots_available": [
+    1,
+    2,
+    3
+   ],
+   "slots_expected": [
+    1,
+    2,
+    3
+   ],
+   "tiers": {
+    "1": 1,
+    "2": 1,
+    "3": 1
+   },
+   "trend": "评分递增"
+  }
+ },
+ "stability": {
+  "always_tier1": [
+   "002897",
+   "301291",
+   "603139",
+   "603920"
+  ],
+  "consensus": [
+   "002897",
+   "301291",
+   "603139",
+   "603920",
+   "301393",
+   "300802",
+   "603328",
+   "301607",
+   "603257",
+   "301096",
+   "600596",
+   "002913"
+  ],
+  "declining": [],
+  "final_new": [],
+  "missing_slots": [],
+  "persistence_verified": true,
+  "pulse_only": [],
+  "slots_available": [
+   1,
+   2,
+   3
+  ],
+  "slots_expected": [
+   1,
+   2,
+   3
+  ],
+  "unverified": [
+   "600719"
+  ]
+ },
+ "status": "ok",
+ "suggestions": [
+  {
+   "text": "高置信标的（三轮均一档，4只）：002897 意华股份(末轮103.0分), 301291 明阳电气(末轮98.0分), 603139 康惠股份(末轮93.0分), 603920 世运电路(末轮93.0分)，可优先考虑尾盘建仓",
+   "type": "high_confidence"
+  }
+ ],
+ "tier1_matrix": [
+  {
+   "changes": {
+    "1": 3.28,
+    "2": 3.28,
+    "3": 3.28
+   },
+   "code": "600719",
+   "name": "大连热电",
+   "prices": {
+    "1": 7.87,
+    "2": 7.87,
+    "3": 7.87
+   },
+   "scores": {
+    "1": 110,
+    "2": 110,
+    "3": 110
+   },
+   "signal_type": "unverified",
+   "signal_type_name": "未验证（轮次不足）",
+   "tiers": {
+    "1": 1,
+    "2": 1,
+    "3": 1
+   },
+   "trend": "评分递增"
+  },
+  {
+   "changes": {
+    "1": 4.13,
+    "2": 4.13,
+    "3": 4.13
+   },
+   "code": "002897",
+   "name": "意华股份",
+   "prices": {
+    "1": 67.58,
+    "2": 67.58,
+    "3": 67.58
+   },
+   "scores": {
+    "1": 103,
+    "2": 103,
+    "3": 103
+   },
+   "signal_type": "strongest",
+   "signal_type_name": "最强信号",
+   "tiers": {
+    "1": 1,
+    "2": 1,
+    "3": 1
+   },
+   "trend": "评分递增"
+  },
+  {
+   "changes": {
+    "1": 4.53,
+    "2": 4.53,
+    "3": 4.53
+   },
+   "code": "301291",
+   "name": "明阳电气",
+   "prices": {
+    "1": 34.15,
+    "2": 34.15,
+    "3": 34.15
+   },
+   "scores": {
+    "1": 98,
+    "2": 98,
+    "3": 98
+   },
+   "signal_type": "strongest",
+   "signal_type_name": "最强信号",
+   "tiers": {
+    "1": 1,
+    "2": 1,
+    "3": 1
+   },
+   "trend": "评分递增"
+  },
+  {
+   "changes": {
+    "1": 3.63,
+    "2": 3.63,
+    "3": 3.63
+   },
+   "code": "603139",
+   "name": "康惠股份",
+   "prices": {
+    "1": 40.55,
+    "2": 40.55,
+    "3": 40.55
+   },
+   "scores": {
+    "1": 93,
+    "2": 93,
+    "3": 93
+   },
+   "signal_type": "strongest",
+   "signal_type_name": "最强信号",
+   "tiers": {
+    "1": 1,
+    "2": 1,
+    "3": 1
+   },
+   "trend": "评分递增"
+  },
+  {
+   "changes": {
+    "1": 3.91,
+    "2": 3.91,
+    "3": 3.91
+   },
+   "code": "603920",
+   "name": "世运电路",
+   "prices": {
+    "1": 43.07,
+    "2": 43.07,
+    "3": 43.07
+   },
+   "scores": {
+    "1": 93,
+    "2": 93,
+    "3": 93
+   },
+   "signal_type": "strongest",
+   "signal_type_name": "最强信号",
+   "tiers": {
+    "1": 1,
+    "2": 1,
+    "3": 1
+   },
+   "trend": "评分递增"
+  },
+  {
+   "changes": {
+    "1": 4.61,
+    "2": 4.61,
+    "3": 4.61
+   },
+   "code": "301393",
+   "name": "昊帆生物",
+   "prices": {
+    "1": 57.58,
+    "2": 57.58,
+    "3": 57.58
+   },
+   "scores": {
+    "1": 88,
+    "2": 88,
+    "3": 88
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "tiers": {
+    "1": 1,
+    "2": 1,
+    "3": 2
+   },
+   "trend": "评分递增"
+  },
+  {
+   "changes": {
+    "1": 4.65,
+    "2": 4.65,
+    "3": 4.65
+   },
+   "code": "300802",
+   "name": "矩子科技",
+   "prices": {
+    "1": 24.55,
+    "2": 24.55,
+    "3": 24.55
+   },
+   "scores": {
+    "1": 85,
+    "2": 85,
+    "3": 85
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "tiers": {
+    "1": 1,
+    "2": 2,
+    "3": 2
+   },
+   "trend": "评分递增"
+  }
+ ],
+ "tier2_matrix": [
+  {
+   "changes": {
+    "1": 5.01,
+    "2": 5.01,
+    "3": 5.01
+   },
+   "code": "603328",
+   "name": "依顿电子",
+   "prices": {
+    "1": 13.41,
+    "2": 13.41,
+    "3": 13.41
+   },
+   "scores": {
+    "1": 83,
+    "2": 83,
+    "3": 83
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "tiers": {
+    "1": 2,
+    "2": 2,
+    "3": 2
+   },
+   "trend": "评分递增"
+  },
+  {
+   "changes": {
+    "1": 3.66,
+    "2": 3.66,
+    "3": 3.66
+   },
+   "code": "301607",
+   "name": "富特科技",
+   "prices": {
+    "1": 43.05,
+    "2": 43.05,
+    "3": 43.05
+   },
+   "scores": {
+    "1": 83,
+    "2": 83,
+    "3": 83
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "tiers": {
+    "1": 2,
+    "2": 2,
+    "3": 2
+   },
+   "trend": "评分递增"
+  },
+  {
+   "changes": {
+    "1": 4.21,
+    "2": 4.21,
+    "3": 4.21
+   },
+   "code": "603257",
+   "name": "中国瑞林",
+   "prices": {
+    "1": 75.66,
+    "2": 75.66,
+    "3": 75.66
+   },
+   "scores": {
+    "1": 80,
+    "2": 80,
+    "3": 80
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "tiers": {
+    "1": 2,
+    "2": 2,
+    "3": 2
+   },
+   "trend": "评分递增"
+  },
+  {
+   "changes": {
+    "1": 4.72,
+    "2": 4.72,
+    "3": 4.72
+   },
+   "code": "301096",
+   "name": "百诚医药",
+   "prices": {
+    "1": 50.35,
+    "2": 50.35,
+    "3": 50.35
+   },
+   "scores": {
+    "1": 73,
+    "2": 73,
+    "3": 73
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "tiers": {
+    "1": 2,
+    "2": 2,
+    "3": 2
+   },
+   "trend": "评分递增"
+  },
+  {
+   "changes": {
+    "1": 3.28,
+    "2": 3.28,
+    "3": 3.28
+   },
+   "code": "600596",
+   "name": "新安股份",
+   "prices": {
+    "1": 12.9,
+    "2": 12.9,
+    "3": 12.9
+   },
+   "scores": {
+    "1": 65,
+    "2": 65,
+    "3": 65
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "tiers": {
+    "1": 2,
+    "2": 2,
+    "3": 2
+   },
+   "trend": "评分递增"
+  },
+  {
+   "changes": {
+    "1": 3.61,
+    "2": 3.61,
+    "3": 3.61
+   },
+   "code": "002913",
+   "name": "奥士康",
+   "prices": {
+    "1": 75.11,
+    "2": 75.11,
+    "3": 75.11
+   },
+   "scores": {
+    "1": 63,
+    "2": 63,
+    "3": 63
+   },
+   "signal_type": "consensus",
+   "signal_type_name": "持续信号",
+   "tiers": {
+    "1": 2,
+    "2": 2,
+    "3": 2
+   },
+   "trend": "评分递增"
+  }
+ ],
+ "tier_changes": [
+  {
+   "change": "一档 → 二档 (降级)",
+   "code": "301393",
+   "name": "昊帆生物"
+  },
+  {
+   "change": "一档 → 二档 (降级)",
+   "code": "300802",
+   "name": "矩子科技"
+  }
+ ],
+ "warnings": [
+  "第 2 轮触发耗时预算，有候选未完成评分；受影响的 1 只已判为「未验证」（不可据此确认持续性）：大连热电",
+  "大盘逐轮走弱（0.5% → 0.5% → 0.5%），整体偏弱，控制仓位"
+ ]
+}

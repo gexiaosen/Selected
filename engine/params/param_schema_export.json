@@ -1,0 +1,1555 @@
+{
+ "schema_groups": [
+  {
+   "group": "hard_filter",
+   "title": "硬性过滤（第一层）",
+   "items": [
+    {
+     "key": "hard_filter.price_min",
+     "label": "最低价格",
+     "type": "float",
+     "default": 3.0,
+     "note": "低于该价格的股票不参与",
+     "tunable": false,
+     "min": 0.5,
+     "max": 20.0,
+     "step": 0.5,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "hard_filter.price_max",
+     "label": "最高价格",
+     "type": "float",
+     "default": 105.0,
+     "note": "高于该价格的股票不参与",
+     "tunable": false,
+     "min": 20.0,
+     "max": 300.0,
+     "step": 5.0,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "hard_filter.change_pct_loose",
+     "label": "宽松涨幅区间(%)",
+     "type": "num_list",
+     "default": [
+      1.0,
+      6.0
+     ],
+     "note": "硬过滤的涨幅带 [下限, 上限]，必须恰好两项（原实现硬解包2项，多一项会崩）",
+     "tunable": true,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": 2,
+     "max_len": 2,
+     "optional": false
+    },
+    {
+     "key": "hard_filter.exclude_st_pattern",
+     "label": "ST/退市排除正则",
+     "type": "str",
+     "default": "ST|\\*ST|^S|退",
+     "note": "",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "hard_filter.exclude_bse_prefix",
+     "label": "北交所代码前缀",
+     "type": "str",
+     "default": "92",
+     "note": "",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    }
+   ]
+  },
+  {
+   "group": "profile_filter",
+   "title": "稳健画像（第二层）",
+   "items": [
+    {
+     "key": "profile_filter.change_pct",
+     "label": "涨幅区间(%)",
+     "type": "num_pair",
+     "default": [
+      1.8,
+      5.2
+     ],
+     "note": "当日涨幅落在该区间才入画像",
+     "tunable": true,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "profile_filter.volume_ratio",
+     "label": "量比区间",
+     "type": "num_pair",
+     "default": [
+      1.9,
+      4.2
+     ],
+     "note": "",
+     "tunable": true,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "profile_filter.turnover",
+     "label": "换手率区间(%)",
+     "type": "num_pair",
+     "default": [
+      4.2,
+      10.5
+     ],
+     "note": "",
+     "tunable": true,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "profile_filter.amplitude_max",
+     "label": "振幅上限(%)",
+     "type": "float",
+     "default": 13.0,
+     "note": "",
+     "tunable": false,
+     "min": 6.0,
+     "max": 20.0,
+     "step": 0.5,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "profile_filter.price_ge_avg",
+     "label": "收盘价≥均价",
+     "type": "bool",
+     "default": true,
+     "note": "",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    }
+   ]
+  },
+  {
+   "group": "form_filter",
+   "title": "形态过滤（第四层）",
+   "items": [
+    {
+     "key": "form_filter.upper_shadow_ratio",
+     "label": "上影线容忍比",
+     "type": "float",
+     "default": 0.8,
+     "note": "",
+     "tunable": false,
+     "min": 0.2,
+     "max": 1.5,
+     "step": 0.05,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "form_filter.close_high_ratio",
+     "label": "收盘高位比",
+     "type": "float",
+     "default": 0.95,
+     "note": "",
+     "tunable": false,
+     "min": 0.6,
+     "max": 1.0,
+     "step": 0.01,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "form_filter.body_ratio_min",
+     "label": "实体占比下限",
+     "type": "float",
+     "default": 0.4,
+     "note": "",
+     "tunable": false,
+     "min": 0.1,
+     "max": 0.9,
+     "step": 0.05,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "form_filter.pass_threshold",
+     "label": "形态通过阈值(项)",
+     "type": "int",
+     "default": 2,
+     "note": "",
+     "tunable": false,
+     "min": 1,
+     "max": 3,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    }
+   ]
+  },
+  {
+   "group": "deep_filter",
+   "title": "深度技术（K线计算）",
+   "items": [
+    {
+     "key": "deep_filter.kline_days",
+     "label": "K线取样天数",
+     "type": "int",
+     "default": 65,
+     "note": "",
+     "tunable": false,
+     "min": 30,
+     "max": 120,
+     "step": 5,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "deep_filter.vol_avg_days",
+     "label": "分均量天数",
+     "type": "int",
+     "default": 5,
+     "note": "「5日均量倍数」所用的均量窗口（已接入计算）",
+     "tunable": false,
+     "min": 3,
+     "max": 10,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "deep_filter.vol_mult_normalize",
+     "label": "量能折算全日口径",
+     "type": "bool",
+     "default": true,
+     "note": "盘中当日量只走了部分交易时间，开启后按已交易分钟数折算到全日，否则 14:00 轮会系统性低估放量、且三轮口径不一致",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "deep_filter.ma20_slope_lookback",
+     "label": "MA20斜率回看",
+     "type": "int",
+     "default": 5,
+     "note": "",
+     "tunable": false,
+     "min": 3,
+     "max": 10,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    }
+   ]
+  },
+  {
+   "group": "exclusion",
+   "title": "深度排除规则",
+   "items": [
+    {
+     "key": "exclusion.deep_trend_threshold",
+     "label": "深跌排除阈值(%)",
+     "type": "float",
+     "default": -30.0,
+     "note": "",
+     "tunable": false,
+     "min": -60.0,
+     "max": -10.0,
+     "step": 5.0,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "exclusion.pulse_gain_ratio",
+     "label": "脉冲排除·冲高回落保留度",
+     "type": "float",
+     "default": 0.6,
+     "note": "(收盘-昨收)÷(最高-昨收)，分子分母同为昨收基准；1=收在最高，0=涨幅全回吐。低于该值且影体比超限 → 判为脉冲假信号排除",
+     "tunable": true,
+     "min": 0.0,
+     "max": 1.0,
+     "step": 0.05,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "exclusion.pulse_shadow_body",
+     "label": "脉冲排除·影体比",
+     "type": "float",
+     "default": 0.5,
+     "note": "",
+     "tunable": true,
+     "min": 0.0,
+     "max": 2.0,
+     "step": 0.05,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "exclusion.market_change_threshold",
+     "label": "大盘弱市跌幅阈值(%)",
+     "type": "float",
+     "default": -1.5,
+     "note": "",
+     "tunable": false,
+     "min": -4.0,
+     "max": -0.5,
+     "step": 0.1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "exclusion.market_ratio_threshold",
+     "label": "弱市涨跌比阈值",
+     "type": "float",
+     "default": 0.8,
+     "note": "",
+     "tunable": false,
+     "min": 0.3,
+     "max": 1.5,
+     "step": 0.1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "exclusion.market_decline_lookback",
+     "label": "连跌判定回看(日)",
+     "type": "int",
+     "default": 3,
+     "note": "回看多少个已完成交易日统计尾部连跌；≥3 才能判定连跌2日（已接入计算）",
+     "tunable": false,
+     "min": 3,
+     "max": 8,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    }
+   ]
+  },
+  {
+   "group": "scoring_bonus",
+   "title": "评分 · 加分项",
+   "items": [
+    {
+     "key": "scoring.bonus.ma_bullish",
+     "label": "均线多头排列",
+     "type": "int",
+     "default": 20,
+     "note": "",
+     "tunable": true,
+     "min": 0,
+     "max": 50,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.bonus.vol_mult_high",
+     "label": "放量≥1.28倍加分",
+     "type": "num_pair",
+     "default": [
+      1.28,
+      20
+     ],
+     "note": "[量比倍数, 加分]",
+     "tunable": true,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.bonus.vol_mult_mid",
+     "label": "放量1.0~1.28倍加分",
+     "type": "num_pair",
+     "default": [
+      1.0,
+      10
+     ],
+     "note": "",
+     "tunable": true,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.bonus.consec_up",
+     "label": "连涨加分表",
+     "type": "json",
+     "default": {
+      "le1": 15,
+      "le2": 10,
+      "le3": 5,
+      "gt3": 0
+     },
+     "note": "键名即阈值：le1=连涨≤1天, gt3=连涨>3天。**改表即生效**（含 gt3）",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.bonus.cum_5d",
+     "label": "5日累计涨幅加分表",
+     "type": "json",
+     "default": {
+      "le8": 15,
+      "le12": 10,
+      "le15": 5,
+      "gt15": 0
+     },
+     "note": "键名即阈值：le8=累计≤8%…… gt15=累计>15%。**改表即生效**（含 gt15）",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.bonus.dist_low",
+     "label": "距低点距离加分表",
+     "type": "json",
+     "default": {
+      "le15": 10,
+      "le25": 5,
+      "gt25": 0
+     },
+     "note": "键名即阈值。**改表即生效**（含 gt25）",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.bonus.dist_high",
+     "label": "距高点距离加分表",
+     "type": "json",
+     "default": {
+      "le_neg5": 5,
+      "gt_neg5": 0
+     },
+     "note": "_neg 表示负值：le_neg5=距高点≤-5%。**改表即生效**（含 gt_neg5）",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.bonus.form_full",
+     "label": "形态全满足",
+     "type": "int",
+     "default": 10,
+     "note": "",
+     "tunable": true,
+     "min": 0,
+     "max": 30,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.bonus.form_pass",
+     "label": "形态部分满足",
+     "type": "int",
+     "default": 5,
+     "note": "",
+     "tunable": true,
+     "min": 0,
+     "max": 20,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.bonus.market_ok_ok",
+     "label": "大盘强+涨跌比健康",
+     "type": "int",
+     "default": 5,
+     "note": "",
+     "tunable": true,
+     "min": 0,
+     "max": 20,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.bonus.market_ok_only",
+     "label": "大盘强（弱涨跌比）",
+     "type": "int",
+     "default": 3,
+     "note": "",
+     "tunable": true,
+     "min": 0,
+     "max": 15,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.bonus.ma20_slope_up",
+     "label": "MA20 向上",
+     "type": "int",
+     "default": 5,
+     "note": "",
+     "tunable": true,
+     "min": 0,
+     "max": 20,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    }
+   ]
+  },
+  {
+   "group": "scoring_penalty",
+   "title": "评分 · 扣分项",
+   "items": [
+    {
+     "key": "scoring.penalty.prev_1d",
+     "label": "前日涨幅扣分表",
+     "type": "json",
+     "default": {
+      "gt7": -10,
+      "gt5": -5
+     },
+     "note": "键名即阈值：gt7=前日涨>7%。**改表即生效**（原实现阈值 7/5 写死在代码里）",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.penalty.ma_deviation",
+     "label": "乖离率扣分表",
+     "type": "json",
+     "default": {
+      "lt2": 0,
+      "le5": -5,
+      "gt5": -10
+     },
+     "note": "键名即阈值：lt2=偏离<2% 不扣分。**改表即生效**",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.penalty.stagnation",
+     "label": "滞涨判定扣分",
+     "type": "json",
+     "default": {
+      "vol_ratio_min": 2.0,
+      "gain_ratio": 0.6,
+      "score": -5
+     },
+     "note": "",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.penalty.long_shadow",
+     "label": "长上影判定扣分",
+     "type": "json",
+     "default": {
+      "vol_ratio_min": 2.0,
+      "shadow_body": 0.5,
+      "score": -5
+     },
+     "note": "",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.penalty.vol_shrink",
+     "label": "缩量扣分",
+     "type": "json",
+     "default": {
+      "threshold": 1.0,
+      "score": -5
+     },
+     "note": "",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.penalty.cum_5d_low",
+     "label": "5日累计过低扣分",
+     "type": "json",
+     "default": {
+      "threshold": 3.0,
+      "score": -5
+     },
+     "note": "阈值表；**显式填 null 表示本版本停用该扣分**（classic 基线早于该参数，补值会改变其历史行为）。停用不是缺失：留空不会阻断保存（2026-09-17 修复）",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": true
+    }
+   ]
+  },
+  {
+   "group": "scoring_intraday",
+   "title": "评分 · 尾盘分时结构",
+   "items": [
+    {
+     "key": "scoring.intraday.enabled",
+     "label": "启用尾盘分时",
+     "type": "bool",
+     "default": true,
+     "note": "需要 5 分钟线；开启后整轮会增加约 3-9s（仅对形态通过后的候选拉取）",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.intraday.tail_window_min",
+     "label": "尾盘窗口(分钟)",
+     "type": "int",
+     "default": 30,
+     "note": "取「已交易时段的最后 N 分钟」，与第几轮无关，保证三轮可比",
+     "tunable": true,
+     "min": 15,
+     "max": 60,
+     "step": 5,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.intraday.min_bars",
+     "label": "最少5分钟根数",
+     "type": "int",
+     "default": 20,
+     "note": "当日 5 分钟线不足该根数则本维度整体放弃（不猜）",
+     "tunable": false,
+     "min": 6,
+     "max": 48,
+     "step": 2,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.intraday.tail_gain_min",
+     "label": "尾盘拉升下限(%)",
+     "type": "float",
+     "default": 0.3,
+     "note": "尾盘区间涨跌幅（首根收盘→末根收盘）",
+     "tunable": true,
+     "min": -1.0,
+     "max": 3.0,
+     "step": 0.1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.intraday.tail_gain_score",
+     "label": "尾盘拉升加分",
+     "type": "int",
+     "default": 8,
+     "note": "标定支持：≥0.3% 组 L3 期望 -0.627 vs <0.3% 的 -0.855（方向正确）",
+     "tunable": true,
+     "min": 0,
+     "max": 25,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.intraday.close_position_min",
+     "label": "收盘强度分位下限",
+     "type": "float",
+     "default": 0.9,
+     "note": "收盘价在当日[最低,最高]中的分位，1.0=收在最高",
+     "tunable": true,
+     "min": 0.5,
+     "max": 1.0,
+     "step": 0.02,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.intraday.close_position_score",
+     "label": "收盘强度加分",
+     "type": "int",
+     "default": 15,
+     "note": "标定显示这是**最强且单调**的维度：≥0.9 组 L3 期望 -0.427、平均跳空 +0.121%；≥0.97 组 -0.317 / 跳空 +0.737% → 权重由 8 提到 15",
+     "tunable": true,
+     "min": 0,
+     "max": 30,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.intraday.tail_new_high_score",
+     "label": "尾盘创日内新高加分",
+     "type": "int",
+     "default": 10,
+     "note": "标定支持：创新高组平均跳空 -0.048% vs 未创新高 -0.46%（原实现漏了这项加分）",
+     "tunable": true,
+     "min": 0,
+     "max": 25,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.intraday.high_age_max",
+     "label": "高点陈旧度上限",
+     "type": "float",
+     "default": 0.85,
+     "note": "(已交易时长-高点出现时的时长)÷已交易时长。标定显示阈值 0.85 比 0.75 更精准（≥0.85→-0.869 vs <0.85→-0.684）。注意：不要改用「高点是否在早盘」——早盘天然占已交易时长约58%，那是时间权重不是信号",
+     "tunable": true,
+     "min": 0.3,
+     "max": 1.0,
+     "step": 0.05,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.intraday.stale_high_penalty",
+     "label": "高点陈旧扣分",
+     "type": "int",
+     "default": -8,
+     "note": "",
+     "tunable": true,
+     "min": -25,
+     "max": 0,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    }
+   ]
+  },
+  {
+   "group": "budget",
+   "title": "性能预算（防跑飞）",
+   "items": [
+    {
+     "key": "budget.deep_budget_sec",
+     "label": "深挖耗时上限(秒)",
+     "type": "float",
+     "default": 120.0,
+     "note": "候选深挖阶段（日K+5分钟线）的耗时上限；0=不限。触发后按「形态分→量比」优先级保留较好的，其余不评分并在日志留痕",
+     "tunable": false,
+     "min": 0,
+     "max": 600,
+     "step": 10,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "budget.max_deep_candidates",
+     "label": "深挖候选上限(只)",
+     "type": "int",
+     "default": 0,
+     "note": "0=不限。与耗时上限任一先到即停；未触发时对结果零影响",
+     "tunable": false,
+     "min": 0,
+     "max": 2000,
+     "step": 20,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    }
+   ]
+  },
+  {
+   "group": "tiers",
+   "title": "档位与锁档",
+   "items": [
+    {
+     "key": "scoring.tiers.tier1_min",
+     "label": "一档门槛(分)",
+     "type": "int",
+     "default": 70,
+     "note": "",
+     "tunable": true,
+     "min": 55,
+     "max": 95,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.tiers.tier2_min",
+     "label": "二档门槛(分)",
+     "type": "int",
+     "default": 50,
+     "note": "",
+     "tunable": true,
+     "min": 35,
+     "max": 75,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.tier_lock.enabled",
+     "label": "均线降档锁启用",
+     "type": "bool",
+     "default": true,
+     "note": "",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "scoring.tier_lock.max_score",
+     "label": "非多头最高分",
+     "type": "int",
+     "default": 69,
+     "note": "均线非多头时分数封顶（低于一档门槛则强制三档）",
+     "tunable": true,
+     "min": 0,
+     "max": 100,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    }
+   ]
+  },
+  {
+   "group": "etf",
+   "title": "ETF 推荐",
+   "items": [
+    {
+     "key": "etf.change_pct_min",
+     "label": "涨幅下限(%)",
+     "type": "float",
+     "default": 0.5,
+     "note": "",
+     "tunable": false,
+     "min": 0.0,
+     "max": 3.0,
+     "step": 0.1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "etf.volume_ratio_min",
+     "label": "量比下限",
+     "type": "float",
+     "default": 1.0,
+     "note": "",
+     "tunable": false,
+     "min": 0.5,
+     "max": 3.0,
+     "step": 0.1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "etf.top_n",
+     "label": "推荐数量",
+     "type": "int",
+     "default": 8,
+     "note": "",
+     "tunable": false,
+     "min": 1,
+     "max": 20,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "etf.codes",
+     "label": "ETF 池(逗号分隔代码)",
+     "type": "str_list",
+     "default": null,
+     "note": "用逗号分隔，如 159915,510300",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    }
+   ]
+  },
+  {
+   "group": "predict",
+   "title": "预判策略",
+   "items": [
+    {
+     "key": "predict_rules.red_decline_days",
+     "label": "红灯连跌天数",
+     "type": "int",
+     "default": 2,
+     "note": "",
+     "tunable": false,
+     "min": 1,
+     "max": 5,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "predict_rules.yellow_open_threshold",
+     "label": "黄灯开盘阈值(%)",
+     "type": "float",
+     "default": -0.5,
+     "note": "",
+     "tunable": false,
+     "min": -3.0,
+     "max": 0.0,
+     "step": 0.1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "predict_rules.strategies",
+     "label": "策略表(JSON)",
+     "type": "json",
+     "default": null,
+     "note": "5 种策略的卖出窗口/目标/止损/风险/仓位/文案，JSON 对象",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "predict_rules.regime_thresholds",
+     "label": "大盘状态门槛浮动",
+     "type": "json",
+     "default": null,
+     "note": "五种大盘状态对目标价/止损价/自选打分线的**浮动量**（target_adj/stop_adj 是百分点、score_adj 是分；**负 = 降门槛**）。灯级判定不受它影响；`crash` 分支不偏移（仓位建议是空仓，调它没意义）",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    }
+   ]
+  },
+  {
+   "group": "iterate",
+   "title": "迭代与风控阈值",
+   "items": [
+    {
+     "key": "iterate.trigger_interval",
+     "label": "迭代触发间隔(有效日)",
+     "type": "int",
+     "default": 3,
+     "note": "",
+     "tunable": false,
+     "min": 1,
+     "max": 10,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "iterate.empty_trend_days",
+     "label": "空仓趋势统计天数",
+     "type": "int",
+     "default": 10,
+     "note": "",
+     "tunable": false,
+     "min": 3,
+     "max": 30,
+     "step": 1,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "iterate.warning_pct",
+     "label": "空仓告警线(%)",
+     "type": "float",
+     "default": 80,
+     "note": "",
+     "tunable": false,
+     "min": 30,
+     "max": 100,
+     "step": 5,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "iterate.notice_pct",
+     "label": "空仓提示线(%)",
+     "type": "float",
+     "default": 50,
+     "note": "",
+     "tunable": false,
+     "min": 20,
+     "max": 90,
+     "step": 5,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    },
+    {
+     "key": "iterate.thresholds",
+     "label": "阈值表(JSON)",
+     "type": "json",
+     "default": null,
+     "note": "含窗口/收盘/高点偏差、胜率线、晨午比、纪律目标幅度(discipline_target_pct)、平均收益封顶(avg_profit_cap) 等",
+     "tunable": false,
+     "min": null,
+     "max": null,
+     "step": null,
+     "min_len": null,
+     "max_len": null,
+     "optional": false
+    }
+   ]
+  }
+ ],
+ "required_json_keys": {
+  "scoring.bonus.consec_up": [
+   "le1",
+   "le2",
+   "le3",
+   "gt3"
+  ],
+  "scoring.bonus.cum_5d": [
+   "le8",
+   "le12",
+   "le15",
+   "gt15"
+  ],
+  "scoring.bonus.dist_low": [
+   "le15",
+   "le25",
+   "gt25"
+  ],
+  "scoring.bonus.dist_high": [
+   "le_neg5",
+   "gt_neg5"
+  ],
+  "scoring.penalty.prev_1d": [
+   "gt7",
+   "gt5"
+  ],
+  "scoring.penalty.ma_deviation": [
+   "lt2",
+   "le5",
+   "gt5"
+  ],
+  "scoring.penalty.stagnation": [
+   "vol_ratio_min",
+   "gain_ratio",
+   "score"
+  ],
+  "scoring.penalty.long_shadow": [
+   "vol_ratio_min",
+   "shadow_body",
+   "score"
+  ],
+  "scoring.penalty.vol_shrink": [
+   "threshold",
+   "score"
+  ],
+  "predict_rules.strategies": [
+   "up_consensus",
+   "up_pulse",
+   "down_consensus",
+   "down_pulse",
+   "crash"
+  ],
+  "predict_rules.regime_thresholds": [
+   "BULL_TREND",
+   "BULL_CORRECTION",
+   "BEAR_TREND",
+   "PANIC",
+   "RECOVERY"
+  ],
+  "iterate.thresholds": [
+   "discipline_target_pct",
+   "discipline_window"
+  ]
+ },
+ "factory_params": {
+  "hard_filter": {
+   "price_min": 3.0,
+   "price_max": 105.0,
+   "amplitude_max": 15.0,
+   "change_pct_min": -7.0,
+   "change_pct_loose": [
+    1.0,
+    6.0
+   ],
+   "exclude_st_pattern": "ST|\\*ST|^S|退",
+   "exclude_bse_prefix": "92",
+   "one_word_board_pct": 9.0
+  },
+  "profile_filter": {
+   "change_pct": [
+    1.8,
+    5.2
+   ],
+   "volume_ratio": [
+    1.9,
+    4.2
+   ],
+   "turnover": [
+    4.2,
+    10.5
+   ],
+   "amplitude_max": 13.0,
+   "price_ge_avg": true
+  },
+  "risk_filter": {
+   "volume_ratio_hard_max": 6.8,
+   "turnover_hard_max": 17.5
+  },
+  "form_filter": {
+   "upper_shadow_ratio": 0.8,
+   "close_high_ratio": 0.95,
+   "body_ratio_min": 0.4,
+   "pass_threshold": 2
+  },
+  "deep_filter": {
+   "kline_days": 65,
+   "vol_avg_days": 5,
+   "ma20_slope_lookback": 5,
+   "vol_mult_normalize": true
+  },
+  "exclusion": {
+   "deep_trend_threshold": -30.0,
+   "pulse_gain_ratio": 0.6,
+   "pulse_shadow_body": 0.5,
+   "market_change_threshold": -1.5,
+   "market_ratio_threshold": 0.8,
+   "market_decline_lookback": 3
+  },
+  "scoring": {
+   "bonus": {
+    "ma_bullish": 20,
+    "vol_mult_high": [
+     1.28,
+     20
+    ],
+    "vol_mult_mid": [
+     1.0,
+     10
+    ],
+    "consec_up": {
+     "le1": 15,
+     "le2": 10,
+     "le3": 5,
+     "gt3": 0
+    },
+    "cum_5d": {
+     "le8": 15,
+     "le12": 10,
+     "le15": 5,
+     "gt15": 0
+    },
+    "dist_low": {
+     "le15": 10,
+     "le25": 5,
+     "gt25": 0
+    },
+    "dist_high": {
+     "le_neg5": 5,
+     "gt_neg5": 0
+    },
+    "form_full": 10,
+    "form_pass": 5,
+    "market_ok_ok": 5,
+    "market_ok_only": 3,
+    "ma20_slope_up": 5
+   },
+   "penalty": {
+    "prev_1d": {
+     "gt7": -10,
+     "gt5": -5
+    },
+    "ma_deviation": {
+     "lt2": 0,
+     "le5": -5,
+     "gt5": -10
+    },
+    "stagnation": {
+     "vol_ratio_min": 2.0,
+     "gain_ratio": 0.6,
+     "score": -5
+    },
+    "long_shadow": {
+     "vol_ratio_min": 2.0,
+     "shadow_body": 0.5,
+     "score": -5
+    },
+    "vol_shrink": {
+     "threshold": 1.0,
+     "score": -5
+    },
+    "cum_5d_low": {
+     "threshold": 3.0,
+     "score": -5
+    }
+   },
+   "tier_lock": {
+    "enabled": true,
+    "max_score": 69
+   },
+   "tiers": {
+    "tier1_min": 70,
+    "tier2_min": 50
+   },
+   "intraday": {
+    "enabled": true,
+    "tail_window_min": 30,
+    "min_bars": 20,
+    "tail_vol_ratio_min": 1.5,
+    "tail_vol_ratio_score": 0,
+    "tail_gain_min": 0.3,
+    "tail_gain_score": 8,
+    "close_position_min": 0.9,
+    "close_position_score": 15,
+    "tail_new_high_score": 10,
+    "high_age_max": 0.85,
+    "stale_high_penalty": -8
+   },
+   "patterns": {
+    "enabled": false,
+    "bullish_score": 6,
+    "bearish_score": -6,
+    "neutral_score": 0,
+    "cap": 12
+   }
+  },
+  "etf": {
+   "change_pct_min": 0.5,
+   "volume_ratio_min": 1.0,
+   "top_n": 8,
+   "codes": [
+    "159915",
+    "510300",
+    "510500",
+    "159919",
+    "512100",
+    "159922",
+    "510050",
+    "159949",
+    "512660",
+    "512480",
+    "159992",
+    "512010",
+    "512170",
+    "159881",
+    "588000",
+    "159869",
+    "560250",
+    "159667",
+    "562500",
+    "159995",
+    "515790",
+    "516160",
+    "515050",
+    "512690",
+    "512800",
+    "159766",
+    "515170",
+    "512680",
+    "515710",
+    "159825",
+    "512980",
+    "515030",
+    "562000",
+    "159605",
+    "513100",
+    "513500",
+    "159941",
+    "510880",
+    "512880",
+    "515180",
+    "159989",
+    "513050"
+   ]
+  },
+  "rounds": {
+   "slots": [
+    "14:00",
+    "14:30",
+    "14:50"
+   ],
+   "boundaries": [
+    "14:15",
+    "14:40"
+   ]
+  },
+  "budget": {
+   "deep_budget_sec": 120.0,
+   "max_deep_candidates": 0
+  },
+  "phases": {
+   "predict": "09:30",
+   "verify": "10:00",
+   "review": "15:05",
+   "iterate": "15:30"
+  },
+  "predict_rules": {
+   "red_decline_days": 2,
+   "yellow_open_threshold": -0.5,
+   "regime_thresholds": {
+    "BULL_TREND": {
+     "target_adj": 0.0,
+     "stop_adj": 0.0,
+     "score_adj": 0.0
+    },
+    "BULL_CORRECTION": {
+     "target_adj": -1.0,
+     "stop_adj": 0.5,
+     "score_adj": -3.0
+    },
+    "BEAR_TREND": {
+     "target_adj": 1.0,
+     "stop_adj": -0.5,
+     "score_adj": 5.0
+    },
+    "PANIC": {
+     "target_adj": 2.0,
+     "stop_adj": -1.0,
+     "score_adj": 10.0
+    },
+    "RECOVERY": {
+     "target_adj": -0.5,
+     "stop_adj": 0.0,
+     "score_adj": -2.0
+    }
+   },
+   "strategies": {
+    "up_consensus": {
+     "window": [
+      "10:30",
+      "11:30"
+     ],
+     "target_pct": 2.0,
+     "stop_pct": -2.0,
+     "risk": "低",
+     "position": "正常仓位",
+     "direction": "上午强，10:30-11:30冲高"
+    },
+    "up_pulse": {
+     "window": [
+      "10:00",
+      "10:30"
+     ],
+     "target_pct": 2.0,
+     "stop_pct": -2.0,
+     "risk": "中",
+     "position": "半仓",
+     "direction": "短冲高，见好就收"
+    },
+    "down_consensus": {
+     "window": [
+      "14:30",
+      "15:00"
+     ],
+     "target_pct": 1.0,
+     "stop_pct": -1.5,
+     "risk": "中",
+     "position": "半仓",
+     "direction": "午后修复，尾盘卖出"
+    },
+    "down_pulse": {
+     "window": [
+      "09:30",
+      "10:00"
+     ],
+     "target_pct": 1.0,
+     "stop_pct": -1.5,
+     "risk": "高",
+     "position": "轻仓",
+     "direction": "低开反弹，尽快离场"
+    },
+    "crash": {
+     "window": [
+      "--",
+      "--"
+     ],
+     "target_pct": 0.0,
+     "stop_pct": 0.0,
+     "risk": "极高",
+     "position": "空仓观望",
+     "direction": "暴跌日不操作"
+    }
+   }
+  },
+  "iterate": {
+   "trigger_interval": 3,
+   "empty_trend_days": 10,
+   "warning_pct": 80,
+   "notice_pct": 50,
+   "tune_pool_days": 120,
+   "include_replay": false,
+   "thresholds": {
+    "window_vs_snap": 10,
+    "window_vs_close": 10,
+    "high_vs_window": 15,
+    "low_winrate": 40,
+    "low_high_winrate": 50,
+    "group_market": 20,
+    "group_signal": 15,
+    "morning_ratio": 0.6,
+    "afternoon_ratio": 0.6,
+    "discipline_target_pct": 1.5,
+    "discipline_window": [
+     "09:30",
+     "11:30"
+    ],
+    "avg_profit_cap": 10.0
+   }
+  }
+ },
+ "builtin_versions": {
+  "默认": "classic_2026_7_16.json",
+  "backtest": "backtest_v1_1_0.json",
+  "backtest-1.2.0": "backtest_v1_2_0.json",
+  "backtest-1.3.0": "backtest_v1_3_0.json",
+  "backtest-strict": "backtest_strict.json"
+ },
+ "builtin_order": [
+  "默认",
+  "backtest",
+  "backtest-1.2.0",
+  "backtest-1.3.0",
+  "backtest-strict"
+ ],
+ "default_active": "backtest-1.3.0",
+ "protected_versions": [
+  "默认"
+ ],
+ "deleted_builtins_key": "params_deleted_builtins",
+ "superseded_defaults": {
+  "backtest": "backtest-1.3.0",
+  "backtest-1.2.0": "backtest-1.3.0"
+ },
+ "migration_flag_key": "param_default_migrated"
+}

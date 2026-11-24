@@ -1,0 +1,1434 @@
+{
+ "baseline": {
+  "metrics": {
+   "by_metric": {
+    "ceiling": {
+     "avg_profit": 3.47,
+     "fallback": 1,
+     "label": "策略上限口径(事后视角,仅诊断)",
+     "labeled": 3,
+     "tier1_n": 3,
+     "winrate": 100.0
+    },
+    "close": {
+     "avg_profit": 2.2,
+     "fallback": 0,
+     "label": "收盘持有口径",
+     "labeled": 3,
+     "tier1_n": 3,
+     "winrate": 100.0
+    },
+    "l1": {
+     "avg_profit": 1.43,
+     "fallback": 1,
+     "label": "跳空口径(次日开盘为正)",
+     "labeled": 3,
+     "tier1_n": 3,
+     "winrate": 100.0
+    },
+    "l3": {
+     "avg_profit": 1.1,
+     "fallback": 0,
+     "label": "纪律口径(窗口内首次触及目标价)",
+     "labeled": 3,
+     "tier1_n": 3,
+     "winrate": 66.7
+    },
+    "window": {
+     "avg_profit": 3.07,
+     "fallback": 0,
+     "label": "窗口最高价口径(不可实现,仅诊断)",
+     "labeled": 3,
+     "tier1_n": 3,
+     "winrate": 100.0
+    }
+   },
+   "coverage_pct": 42.9,
+   "metric": "l3",
+   "metric_fallback": 0.0,
+   "metric_label": "纪律口径(窗口内首次触及目标价)",
+   "per_stock": [
+    {
+     "code": "600001",
+     "date": "2026-09-10",
+     "name": "甲股",
+     "profit": 1.5,
+     "score": 85,
+     "tier": 1,
+     "win": true
+    },
+    {
+     "code": "600002",
+     "date": "2026-09-10",
+     "name": "乙股",
+     "profit": 1.5,
+     "score": 70,
+     "tier": 2,
+     "win": true
+    },
+    {
+     "code": "600003",
+     "date": "2026-09-10",
+     "name": "丙股",
+     "profit": -2.0,
+     "score": 15,
+     "tier": 3,
+     "win": false
+    },
+    {
+     "code": "600004",
+     "date": "2026-09-10",
+     "name": "丁股",
+     "profit": 1.8,
+     "score": 88,
+     "tier": 1,
+     "win": true
+    },
+    {
+     "code": "600005",
+     "date": "2026-09-11",
+     "name": "戊股",
+     "profit": 1.5,
+     "score": 65,
+     "tier": 2,
+     "win": true
+    },
+    {
+     "code": "600006",
+     "date": "2026-09-11",
+     "name": "己股",
+     "profit": -1.0,
+     "score": 35,
+     "tier": 3,
+     "win": false
+    },
+    {
+     "code": "600007",
+     "date": "2026-09-11",
+     "name": "庚股",
+     "profit": 0.0,
+     "score": 90,
+     "tier": 1,
+     "win": false
+    }
+   ],
+   "pool_size": 7,
+   "score_errors": 0,
+   "tier1": {
+    "avg_profit": 1.1,
+    "labeled": 3,
+    "labeled_fallback": 0,
+    "n": 3,
+    "winrate": 66.7,
+    "wins": 2
+   },
+   "tier2": {
+    "avg_profit": 1.5,
+    "labeled": 2,
+    "labeled_fallback": 0,
+    "n": 2,
+    "winrate": 100.0,
+    "wins": 2
+   },
+   "total": 47.61,
+   "valid_size": 7
+  }
+ },
+ "candidates": [
+  {
+   "backtest": {
+    "rows": [
+     {
+      "change": "same",
+      "code": "600004",
+      "name": "丁股",
+      "new_score": 88,
+      "new_tier": 1,
+      "old_score": 88,
+      "old_tier": 1,
+      "profit": 1.8,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600001",
+      "name": "甲股",
+      "new_score": 85,
+      "new_tier": 1,
+      "old_score": 85,
+      "old_tier": 1,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600007",
+      "name": "庚股",
+      "new_score": 85,
+      "new_tier": 1,
+      "old_score": 90,
+      "old_tier": 1,
+      "profit": 0.0,
+      "win": false
+     },
+     {
+      "change": "same",
+      "code": "600002",
+      "name": "乙股",
+      "new_score": 65,
+      "new_tier": 2,
+      "old_score": 70,
+      "old_tier": 2,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600005",
+      "name": "戊股",
+      "new_score": 65,
+      "new_tier": 2,
+      "old_score": 65,
+      "old_tier": 2,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600006",
+      "name": "己股",
+      "new_score": 35,
+      "new_tier": 3,
+      "old_score": 35,
+      "old_tier": 3,
+      "profit": -1.0,
+      "win": false
+     },
+     {
+      "change": "same",
+      "code": "600003",
+      "name": "丙股",
+      "new_score": 15,
+      "new_tier": 3,
+      "old_score": 15,
+      "old_tier": 3,
+      "profit": -2.0,
+      "win": false
+     }
+    ],
+    "summary": {
+     "avg_profit_delta": 0.0,
+     "bad_changes": 0,
+     "good_changes": 0,
+     "new": {
+      "coverage_pct": 42.9,
+      "tier1": {
+       "avg_profit": 1.1,
+       "labeled": 3,
+       "labeled_fallback": 0,
+       "n": 3,
+       "winrate": 66.7,
+       "wins": 2
+      },
+      "total": 47.61
+     },
+     "old": {
+      "coverage_pct": 42.9,
+      "tier1": {
+       "avg_profit": 1.1,
+       "labeled": 3,
+       "labeled_fallback": 0,
+       "n": 3,
+       "winrate": 66.7,
+       "wins": 2
+      },
+      "total": 47.61
+     },
+     "total_delta": 0.0,
+     "winrate_delta": 0.0
+    }
+   },
+   "diff": {
+    "scoring.bonus.form_pass": 0,
+    "scoring.tiers.tier2_min": 62
+   },
+   "metrics": {
+    "by_metric": {
+     "ceiling": {
+      "avg_profit": 3.47,
+      "fallback": 1,
+      "label": "策略上限口径(事后视角,仅诊断)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "close": {
+      "avg_profit": 2.2,
+      "fallback": 0,
+      "label": "收盘持有口径",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "l1": {
+      "avg_profit": 1.43,
+      "fallback": 1,
+      "label": "跳空口径(次日开盘为正)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "l3": {
+      "avg_profit": 1.1,
+      "fallback": 0,
+      "label": "纪律口径(窗口内首次触及目标价)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 66.7
+     },
+     "window": {
+      "avg_profit": 3.07,
+      "fallback": 0,
+      "label": "窗口最高价口径(不可实现,仅诊断)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     }
+    },
+    "coverage_pct": 42.9,
+    "metric": "l3",
+    "metric_fallback": 0.0,
+    "metric_label": "纪律口径(窗口内首次触及目标价)",
+    "per_stock": [
+     {
+      "code": "600001",
+      "date": "2026-09-10",
+      "name": "甲股",
+      "profit": 1.5,
+      "score": 85,
+      "tier": 1,
+      "win": true
+     },
+     {
+      "code": "600002",
+      "date": "2026-09-10",
+      "name": "乙股",
+      "profit": 1.5,
+      "score": 65,
+      "tier": 2,
+      "win": true
+     },
+     {
+      "code": "600003",
+      "date": "2026-09-10",
+      "name": "丙股",
+      "profit": -2.0,
+      "score": 15,
+      "tier": 3,
+      "win": false
+     },
+     {
+      "code": "600004",
+      "date": "2026-09-10",
+      "name": "丁股",
+      "profit": 1.8,
+      "score": 88,
+      "tier": 1,
+      "win": true
+     },
+     {
+      "code": "600005",
+      "date": "2026-09-11",
+      "name": "戊股",
+      "profit": 1.5,
+      "score": 65,
+      "tier": 2,
+      "win": true
+     },
+     {
+      "code": "600006",
+      "date": "2026-09-11",
+      "name": "己股",
+      "profit": -1.0,
+      "score": 35,
+      "tier": 3,
+      "win": false
+     },
+     {
+      "code": "600007",
+      "date": "2026-09-11",
+      "name": "庚股",
+      "profit": 0.0,
+      "score": 85,
+      "tier": 1,
+      "win": false
+     }
+    ],
+    "pool_size": 7,
+    "score_errors": 0,
+    "tier1": {
+     "avg_profit": 1.1,
+     "labeled": 3,
+     "labeled_fallback": 0,
+     "n": 3,
+     "winrate": 66.7,
+     "wins": 2
+    },
+    "tier2": {
+     "avg_profit": 1.5,
+     "labeled": 2,
+     "labeled_fallback": 0,
+     "n": 2,
+     "winrate": 100.0,
+     "wins": 2
+    },
+    "total": 47.61,
+    "valid_size": 7
+   }
+  },
+  {
+   "backtest": {
+    "rows": [
+     {
+      "change": "same",
+      "code": "600007",
+      "name": "庚股",
+      "new_score": 90,
+      "new_tier": 1,
+      "old_score": 90,
+      "old_tier": 1,
+      "profit": 0.0,
+      "win": false
+     },
+     {
+      "change": "same",
+      "code": "600004",
+      "name": "丁股",
+      "new_score": 88,
+      "new_tier": 1,
+      "old_score": 88,
+      "old_tier": 1,
+      "profit": 1.8,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600001",
+      "name": "甲股",
+      "new_score": 85,
+      "new_tier": 1,
+      "old_score": 85,
+      "old_tier": 1,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600002",
+      "name": "乙股",
+      "new_score": 70,
+      "new_tier": 2,
+      "old_score": 70,
+      "old_tier": 2,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600005",
+      "name": "戊股",
+      "new_score": 65,
+      "new_tier": 2,
+      "old_score": 65,
+      "old_tier": 2,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600006",
+      "name": "己股",
+      "new_score": 35,
+      "new_tier": 3,
+      "old_score": 35,
+      "old_tier": 3,
+      "profit": -1.0,
+      "win": false
+     },
+     {
+      "change": "same",
+      "code": "600003",
+      "name": "丙股",
+      "new_score": 15,
+      "new_tier": 3,
+      "old_score": 15,
+      "old_tier": 3,
+      "profit": -2.0,
+      "win": false
+     }
+    ],
+    "summary": {
+     "avg_profit_delta": 0.0,
+     "bad_changes": 0,
+     "good_changes": 0,
+     "new": {
+      "coverage_pct": 42.9,
+      "tier1": {
+       "avg_profit": 1.1,
+       "labeled": 3,
+       "labeled_fallback": 0,
+       "n": 3,
+       "winrate": 66.7,
+       "wins": 2
+      },
+      "total": 47.61
+     },
+     "old": {
+      "coverage_pct": 42.9,
+      "tier1": {
+       "avg_profit": 1.1,
+       "labeled": 3,
+       "labeled_fallback": 0,
+       "n": 3,
+       "winrate": 66.7,
+       "wins": 2
+      },
+      "total": 47.61
+     },
+     "total_delta": 0.0,
+     "winrate_delta": 0.0
+    }
+   },
+   "diff": {
+    "scoring.intraday.tail_gain_min": 0.31
+   },
+   "metrics": {
+    "by_metric": {
+     "ceiling": {
+      "avg_profit": 3.47,
+      "fallback": 1,
+      "label": "策略上限口径(事后视角,仅诊断)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "close": {
+      "avg_profit": 2.2,
+      "fallback": 0,
+      "label": "收盘持有口径",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "l1": {
+      "avg_profit": 1.43,
+      "fallback": 1,
+      "label": "跳空口径(次日开盘为正)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "l3": {
+      "avg_profit": 1.1,
+      "fallback": 0,
+      "label": "纪律口径(窗口内首次触及目标价)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 66.7
+     },
+     "window": {
+      "avg_profit": 3.07,
+      "fallback": 0,
+      "label": "窗口最高价口径(不可实现,仅诊断)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     }
+    },
+    "coverage_pct": 42.9,
+    "metric": "l3",
+    "metric_fallback": 0.0,
+    "metric_label": "纪律口径(窗口内首次触及目标价)",
+    "per_stock": [
+     {
+      "code": "600001",
+      "date": "2026-09-10",
+      "name": "甲股",
+      "profit": 1.5,
+      "score": 85,
+      "tier": 1,
+      "win": true
+     },
+     {
+      "code": "600002",
+      "date": "2026-09-10",
+      "name": "乙股",
+      "profit": 1.5,
+      "score": 70,
+      "tier": 2,
+      "win": true
+     },
+     {
+      "code": "600003",
+      "date": "2026-09-10",
+      "name": "丙股",
+      "profit": -2.0,
+      "score": 15,
+      "tier": 3,
+      "win": false
+     },
+     {
+      "code": "600004",
+      "date": "2026-09-10",
+      "name": "丁股",
+      "profit": 1.8,
+      "score": 88,
+      "tier": 1,
+      "win": true
+     },
+     {
+      "code": "600005",
+      "date": "2026-09-11",
+      "name": "戊股",
+      "profit": 1.5,
+      "score": 65,
+      "tier": 2,
+      "win": true
+     },
+     {
+      "code": "600006",
+      "date": "2026-09-11",
+      "name": "己股",
+      "profit": -1.0,
+      "score": 35,
+      "tier": 3,
+      "win": false
+     },
+     {
+      "code": "600007",
+      "date": "2026-09-11",
+      "name": "庚股",
+      "profit": 0.0,
+      "score": 90,
+      "tier": 1,
+      "win": false
+     }
+    ],
+    "pool_size": 7,
+    "score_errors": 0,
+    "tier1": {
+     "avg_profit": 1.1,
+     "labeled": 3,
+     "labeled_fallback": 0,
+     "n": 3,
+     "winrate": 66.7,
+     "wins": 2
+    },
+    "tier2": {
+     "avg_profit": 1.5,
+     "labeled": 2,
+     "labeled_fallback": 0,
+     "n": 2,
+     "winrate": 100.0,
+     "wins": 2
+    },
+    "total": 47.61,
+    "valid_size": 7
+   }
+  },
+  {
+   "backtest": {
+    "rows": [
+     {
+      "change": "same",
+      "code": "600007",
+      "name": "庚股",
+      "new_score": 90,
+      "new_tier": 1,
+      "old_score": 90,
+      "old_tier": 1,
+      "profit": 0.0,
+      "win": false
+     },
+     {
+      "change": "same",
+      "code": "600004",
+      "name": "丁股",
+      "new_score": 87,
+      "new_tier": 1,
+      "old_score": 88,
+      "old_tier": 1,
+      "profit": 1.8,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600001",
+      "name": "甲股",
+      "new_score": 84,
+      "new_tier": 1,
+      "old_score": 85,
+      "old_tier": 1,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600002",
+      "name": "乙股",
+      "new_score": 70,
+      "new_tier": 2,
+      "old_score": 70,
+      "old_tier": 2,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600005",
+      "name": "戊股",
+      "new_score": 65,
+      "new_tier": 2,
+      "old_score": 65,
+      "old_tier": 2,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600006",
+      "name": "己股",
+      "new_score": 35,
+      "new_tier": 3,
+      "old_score": 35,
+      "old_tier": 3,
+      "profit": -1.0,
+      "win": false
+     },
+     {
+      "change": "same",
+      "code": "600003",
+      "name": "丙股",
+      "new_score": 15,
+      "new_tier": 3,
+      "old_score": 15,
+      "old_tier": 3,
+      "profit": -2.0,
+      "win": false
+     }
+    ],
+    "summary": {
+     "avg_profit_delta": 0.0,
+     "bad_changes": 0,
+     "good_changes": 0,
+     "new": {
+      "coverage_pct": 42.9,
+      "tier1": {
+       "avg_profit": 1.1,
+       "labeled": 3,
+       "labeled_fallback": 0,
+       "n": 3,
+       "winrate": 66.7,
+       "wins": 2
+      },
+      "total": 47.61
+     },
+     "old": {
+      "coverage_pct": 42.9,
+      "tier1": {
+       "avg_profit": 1.1,
+       "labeled": 3,
+       "labeled_fallback": 0,
+       "n": 3,
+       "winrate": 66.7,
+       "wins": 2
+      },
+      "total": 47.61
+     },
+     "total_delta": 0.0,
+     "winrate_delta": 0.0
+    }
+   },
+   "diff": {
+    "scoring.bonus.form_full": 9,
+    "scoring.intraday.stale_high_penalty": -13,
+    "scoring.tiers.tier1_min": 80
+   },
+   "metrics": {
+    "by_metric": {
+     "ceiling": {
+      "avg_profit": 3.47,
+      "fallback": 1,
+      "label": "策略上限口径(事后视角,仅诊断)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "close": {
+      "avg_profit": 2.2,
+      "fallback": 0,
+      "label": "收盘持有口径",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "l1": {
+      "avg_profit": 1.43,
+      "fallback": 1,
+      "label": "跳空口径(次日开盘为正)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "l3": {
+      "avg_profit": 1.1,
+      "fallback": 0,
+      "label": "纪律口径(窗口内首次触及目标价)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 66.7
+     },
+     "window": {
+      "avg_profit": 3.07,
+      "fallback": 0,
+      "label": "窗口最高价口径(不可实现,仅诊断)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     }
+    },
+    "coverage_pct": 42.9,
+    "metric": "l3",
+    "metric_fallback": 0.0,
+    "metric_label": "纪律口径(窗口内首次触及目标价)",
+    "per_stock": [
+     {
+      "code": "600001",
+      "date": "2026-09-10",
+      "name": "甲股",
+      "profit": 1.5,
+      "score": 84,
+      "tier": 1,
+      "win": true
+     },
+     {
+      "code": "600002",
+      "date": "2026-09-10",
+      "name": "乙股",
+      "profit": 1.5,
+      "score": 70,
+      "tier": 2,
+      "win": true
+     },
+     {
+      "code": "600003",
+      "date": "2026-09-10",
+      "name": "丙股",
+      "profit": -2.0,
+      "score": 15,
+      "tier": 3,
+      "win": false
+     },
+     {
+      "code": "600004",
+      "date": "2026-09-10",
+      "name": "丁股",
+      "profit": 1.8,
+      "score": 87,
+      "tier": 1,
+      "win": true
+     },
+     {
+      "code": "600005",
+      "date": "2026-09-11",
+      "name": "戊股",
+      "profit": 1.5,
+      "score": 65,
+      "tier": 2,
+      "win": true
+     },
+     {
+      "code": "600006",
+      "date": "2026-09-11",
+      "name": "己股",
+      "profit": -1.0,
+      "score": 35,
+      "tier": 3,
+      "win": false
+     },
+     {
+      "code": "600007",
+      "date": "2026-09-11",
+      "name": "庚股",
+      "profit": 0.0,
+      "score": 90,
+      "tier": 1,
+      "win": false
+     }
+    ],
+    "pool_size": 7,
+    "score_errors": 0,
+    "tier1": {
+     "avg_profit": 1.1,
+     "labeled": 3,
+     "labeled_fallback": 0,
+     "n": 3,
+     "winrate": 66.7,
+     "wins": 2
+    },
+    "tier2": {
+     "avg_profit": 1.5,
+     "labeled": 2,
+     "labeled_fallback": 0,
+     "n": 2,
+     "winrate": 100.0,
+     "wins": 2
+    },
+    "total": 47.61,
+    "valid_size": 7
+   }
+  },
+  {
+   "backtest": {
+    "rows": [
+     {
+      "change": "same",
+      "code": "600007",
+      "name": "庚股",
+      "new_score": 90,
+      "new_tier": 1,
+      "old_score": 90,
+      "old_tier": 1,
+      "profit": 0.0,
+      "win": false
+     },
+     {
+      "change": "same",
+      "code": "600004",
+      "name": "丁股",
+      "new_score": 88,
+      "new_tier": 1,
+      "old_score": 88,
+      "old_tier": 1,
+      "profit": 1.8,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600001",
+      "name": "甲股",
+      "new_score": 85,
+      "new_tier": 1,
+      "old_score": 85,
+      "old_tier": 1,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600002",
+      "name": "乙股",
+      "new_score": 70,
+      "new_tier": 2,
+      "old_score": 70,
+      "old_tier": 2,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600005",
+      "name": "戊股",
+      "new_score": 65,
+      "new_tier": 2,
+      "old_score": 65,
+      "old_tier": 2,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600006",
+      "name": "己股",
+      "new_score": 35,
+      "new_tier": 3,
+      "old_score": 35,
+      "old_tier": 3,
+      "profit": -1.0,
+      "win": false
+     },
+     {
+      "change": "same",
+      "code": "600003",
+      "name": "丙股",
+      "new_score": 15,
+      "new_tier": 3,
+      "old_score": 15,
+      "old_tier": 3,
+      "profit": -2.0,
+      "win": false
+     }
+    ],
+    "summary": {
+     "avg_profit_delta": 0.0,
+     "bad_changes": 0,
+     "good_changes": 0,
+     "new": {
+      "coverage_pct": 42.9,
+      "tier1": {
+       "avg_profit": 1.1,
+       "labeled": 3,
+       "labeled_fallback": 0,
+       "n": 3,
+       "winrate": 66.7,
+       "wins": 2
+      },
+      "total": 47.61
+     },
+     "old": {
+      "coverage_pct": 42.9,
+      "tier1": {
+       "avg_profit": 1.1,
+       "labeled": 3,
+       "labeled_fallback": 0,
+       "n": 3,
+       "winrate": 66.7,
+       "wins": 2
+      },
+      "total": 47.61
+     },
+     "total_delta": 0.0,
+     "winrate_delta": 0.0
+    }
+   },
+   "diff": {
+    "scoring.bonus.market_ok_only": 0
+   },
+   "metrics": {
+    "by_metric": {
+     "ceiling": {
+      "avg_profit": 3.47,
+      "fallback": 1,
+      "label": "策略上限口径(事后视角,仅诊断)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "close": {
+      "avg_profit": 2.2,
+      "fallback": 0,
+      "label": "收盘持有口径",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "l1": {
+      "avg_profit": 1.43,
+      "fallback": 1,
+      "label": "跳空口径(次日开盘为正)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "l3": {
+      "avg_profit": 1.1,
+      "fallback": 0,
+      "label": "纪律口径(窗口内首次触及目标价)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 66.7
+     },
+     "window": {
+      "avg_profit": 3.07,
+      "fallback": 0,
+      "label": "窗口最高价口径(不可实现,仅诊断)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     }
+    },
+    "coverage_pct": 42.9,
+    "metric": "l3",
+    "metric_fallback": 0.0,
+    "metric_label": "纪律口径(窗口内首次触及目标价)",
+    "per_stock": [
+     {
+      "code": "600001",
+      "date": "2026-09-10",
+      "name": "甲股",
+      "profit": 1.5,
+      "score": 85,
+      "tier": 1,
+      "win": true
+     },
+     {
+      "code": "600002",
+      "date": "2026-09-10",
+      "name": "乙股",
+      "profit": 1.5,
+      "score": 70,
+      "tier": 2,
+      "win": true
+     },
+     {
+      "code": "600003",
+      "date": "2026-09-10",
+      "name": "丙股",
+      "profit": -2.0,
+      "score": 15,
+      "tier": 3,
+      "win": false
+     },
+     {
+      "code": "600004",
+      "date": "2026-09-10",
+      "name": "丁股",
+      "profit": 1.8,
+      "score": 88,
+      "tier": 1,
+      "win": true
+     },
+     {
+      "code": "600005",
+      "date": "2026-09-11",
+      "name": "戊股",
+      "profit": 1.5,
+      "score": 65,
+      "tier": 2,
+      "win": true
+     },
+     {
+      "code": "600006",
+      "date": "2026-09-11",
+      "name": "己股",
+      "profit": -1.0,
+      "score": 35,
+      "tier": 3,
+      "win": false
+     },
+     {
+      "code": "600007",
+      "date": "2026-09-11",
+      "name": "庚股",
+      "profit": 0.0,
+      "score": 90,
+      "tier": 1,
+      "win": false
+     }
+    ],
+    "pool_size": 7,
+    "score_errors": 0,
+    "tier1": {
+     "avg_profit": 1.1,
+     "labeled": 3,
+     "labeled_fallback": 0,
+     "n": 3,
+     "winrate": 66.7,
+     "wins": 2
+    },
+    "tier2": {
+     "avg_profit": 1.5,
+     "labeled": 2,
+     "labeled_fallback": 0,
+     "n": 2,
+     "winrate": 100.0,
+     "wins": 2
+    },
+    "total": 47.61,
+    "valid_size": 7
+   }
+  },
+  {
+   "backtest": {
+    "rows": [
+     {
+      "change": "same",
+      "code": "600007",
+      "name": "庚股",
+      "new_score": 90,
+      "new_tier": 1,
+      "old_score": 90,
+      "old_tier": 1,
+      "profit": 0.0,
+      "win": false
+     },
+     {
+      "change": "same",
+      "code": "600004",
+      "name": "丁股",
+      "new_score": 86,
+      "new_tier": 1,
+      "old_score": 88,
+      "old_tier": 1,
+      "profit": 1.8,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600001",
+      "name": "甲股",
+      "new_score": 85,
+      "new_tier": 1,
+      "old_score": 85,
+      "old_tier": 1,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600002",
+      "name": "乙股",
+      "new_score": 70,
+      "new_tier": 2,
+      "old_score": 70,
+      "old_tier": 2,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600005",
+      "name": "戊股",
+      "new_score": 65,
+      "new_tier": 2,
+      "old_score": 65,
+      "old_tier": 2,
+      "profit": 1.5,
+      "win": true
+     },
+     {
+      "change": "same",
+      "code": "600006",
+      "name": "己股",
+      "new_score": 35,
+      "new_tier": 3,
+      "old_score": 35,
+      "old_tier": 3,
+      "profit": -1.0,
+      "win": false
+     },
+     {
+      "change": "same",
+      "code": "600003",
+      "name": "丙股",
+      "new_score": 15,
+      "new_tier": 3,
+      "old_score": 15,
+      "old_tier": 3,
+      "profit": -2.0,
+      "win": false
+     }
+    ],
+    "summary": {
+     "avg_profit_delta": 0.0,
+     "bad_changes": 0,
+     "good_changes": 0,
+     "new": {
+      "coverage_pct": 42.9,
+      "tier1": {
+       "avg_profit": 1.1,
+       "labeled": 3,
+       "labeled_fallback": 0,
+       "n": 3,
+       "winrate": 66.7,
+       "wins": 2
+      },
+      "total": 47.61
+     },
+     "old": {
+      "coverage_pct": 42.9,
+      "tier1": {
+       "avg_profit": 1.1,
+       "labeled": 3,
+       "labeled_fallback": 0,
+       "n": 3,
+       "winrate": 66.7,
+       "wins": 2
+      },
+      "total": 47.61
+     },
+     "total_delta": 0.0,
+     "winrate_delta": 0.0
+    }
+   },
+   "diff": {
+    "scoring.intraday.tail_new_high_score": 8,
+    "scoring.intraday.tail_window_min": 55,
+    "scoring.tier_lock.max_score": 51
+   },
+   "metrics": {
+    "by_metric": {
+     "ceiling": {
+      "avg_profit": 3.47,
+      "fallback": 1,
+      "label": "策略上限口径(事后视角,仅诊断)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "close": {
+      "avg_profit": 2.2,
+      "fallback": 0,
+      "label": "收盘持有口径",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "l1": {
+      "avg_profit": 1.43,
+      "fallback": 1,
+      "label": "跳空口径(次日开盘为正)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     },
+     "l3": {
+      "avg_profit": 1.1,
+      "fallback": 0,
+      "label": "纪律口径(窗口内首次触及目标价)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 66.7
+     },
+     "window": {
+      "avg_profit": 3.07,
+      "fallback": 0,
+      "label": "窗口最高价口径(不可实现,仅诊断)",
+      "labeled": 3,
+      "tier1_n": 3,
+      "winrate": 100.0
+     }
+    },
+    "coverage_pct": 42.9,
+    "metric": "l3",
+    "metric_fallback": 0.0,
+    "metric_label": "纪律口径(窗口内首次触及目标价)",
+    "per_stock": [
+     {
+      "code": "600001",
+      "date": "2026-09-10",
+      "name": "甲股",
+      "profit": 1.5,
+      "score": 85,
+      "tier": 1,
+      "win": true
+     },
+     {
+      "code": "600002",
+      "date": "2026-09-10",
+      "name": "乙股",
+      "profit": 1.5,
+      "score": 70,
+      "tier": 2,
+      "win": true
+     },
+     {
+      "code": "600003",
+      "date": "2026-09-10",
+      "name": "丙股",
+      "profit": -2.0,
+      "score": 15,
+      "tier": 3,
+      "win": false
+     },
+     {
+      "code": "600004",
+      "date": "2026-09-10",
+      "name": "丁股",
+      "profit": 1.8,
+      "score": 86,
+      "tier": 1,
+      "win": true
+     },
+     {
+      "code": "600005",
+      "date": "2026-09-11",
+      "name": "戊股",
+      "profit": 1.5,
+      "score": 65,
+      "tier": 2,
+      "win": true
+     },
+     {
+      "code": "600006",
+      "date": "2026-09-11",
+      "name": "己股",
+      "profit": -1.0,
+      "score": 35,
+      "tier": 3,
+      "win": false
+     },
+     {
+      "code": "600007",
+      "date": "2026-09-11",
+      "name": "庚股",
+      "profit": 0.0,
+      "score": 90,
+      "tier": 1,
+      "win": false
+     }
+    ],
+    "pool_size": 7,
+    "score_errors": 0,
+    "tier1": {
+     "avg_profit": 1.1,
+     "labeled": 3,
+     "labeled_fallback": 0,
+     "n": 3,
+     "winrate": 66.7,
+     "wins": 2
+    },
+    "tier2": {
+     "avg_profit": 1.5,
+     "labeled": 2,
+     "labeled_fallback": 0,
+     "n": 2,
+     "winrate": 100.0,
+     "wins": 2
+    },
+    "total": 47.61,
+    "valid_size": 7
+   }
+  }
+ ],
+ "dims": [
+  "scoring.bonus.ma_bullish",
+  "scoring.bonus.vol_mult_high",
+  "scoring.bonus.vol_mult_mid",
+  "scoring.bonus.form_full",
+  "scoring.bonus.form_pass",
+  "scoring.bonus.market_ok_ok",
+  "scoring.bonus.market_ok_only",
+  "scoring.bonus.ma20_slope_up",
+  "scoring.intraday.tail_window_min",
+  "scoring.intraday.tail_vol_ratio_min",
+  "scoring.intraday.tail_vol_ratio_score",
+  "scoring.intraday.tail_gain_min",
+  "scoring.intraday.tail_gain_score",
+  "scoring.intraday.close_position_min",
+  "scoring.intraday.close_position_score",
+  "scoring.intraday.tail_new_high_score",
+  "scoring.intraday.high_age_max",
+  "scoring.intraday.stale_high_penalty",
+  "scoring.tiers.tier1_min",
+  "scoring.tiers.tier2_min",
+  "scoring.tier_lock.max_score"
+ ],
+ "elapsed_s": 0.1,
+ "label_sources": {
+  "outcomes": 4,
+  "reviews": 3
+ },
+ "metric": "l3",
+ "metric_label": "纪律口径(窗口内首次触及目标价)",
+ "policy_labeled": 0,
+ "policy_mismatch": 0,
+ "pool_dates": 2,
+ "pool_days": 120,
+ "pool_size": 7,
+ "pool_window": "2026-09-10 ~ 2026-09-11",
+ "scope": "global",
+ "scope_note": "评估覆盖：当日**全部已评分标的**（含三档，标签来自 stock_outcomes 的统一政策，已消除原先只覆盖 tier1/tier2 的幸存者偏差）。**仍未覆盖**：在全市场阶段就被硬过滤/画像/形态淘汰、因而从未评分的标的 —— 该层需用行情快照做全链路重放才能评估。",
+ "status": "ok",
+ "warning": "样本仅 7 只，结果不具统计意义（建议≥30只）"
+}

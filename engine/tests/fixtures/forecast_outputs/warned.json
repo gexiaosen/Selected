@@ -1,0 +1,62 @@
+{
+ "adjusted": true,
+ "as_of": "2026-09-11",
+ "backtest": {
+  "both_covered": 0.6,
+  "high_in_band": 0.333,
+  "high_median_err_pct": 2.04,
+  "high_within_upper": 0.833,
+  "low_above_lower": 0.767,
+  "low_in_band": 0.1,
+  "low_median_err_pct": 2.7,
+  "n": 30
+ },
+ "base_close": 55.99,
+ "baseline": {
+  "atr_pct": 7.58,
+  "avg_range_pct": 7.58,
+  "close_up_ratio": 0.6,
+  "days": 30,
+  "high_pct": {
+   "p25": 1.24,
+   "p50": 3.03,
+   "p75": 6.02
+  },
+  "low_pct": {
+   "p25": -5.81,
+   "p50": -4.04,
+   "p75": -1.77
+  },
+  "max_range_pct": 16.52
+ },
+ "caveats": [
+  "区间来自该股自身历史波动分布，属统计估计，不是确定性预测，也不构成买卖建议",
+  "大盘剧烈波动、突发消息、涨跌停一字板时区间会失效",
+  "回测为样本内，偏乐观；样本越短越不稳（见 backtest.n）"
+ ],
+ "code": "000636",
+ "expected_range_pct": 6.16,
+ "high_central": 57.47,
+ "high_optimistic": 58.92,
+ "low_central": 54.02,
+ "low_optimistic": 53.16,
+ "name": "风华高科",
+ "params": {
+  "base_days": 30,
+  "recent_days": 3,
+  "test_days": 30
+ },
+ "recent": {
+  "avg_range_pct": 6.57,
+  "days": 3,
+  "k": 0.87,
+  "k_clamped": false,
+  "k_raw": 0.87,
+  "streak": 2,
+  "vol_mult": 0.78
+ },
+ "status": "ok",
+ "warnings": [
+  "最近一个交易日接近涨停：次日若一字板，区间不适用"
+ ]
+}

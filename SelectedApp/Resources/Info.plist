@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>Selected</string>
+	<key>CFBundleExecutable</key>
+	<string>Selected</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.selected.eod-screener</string>
+	<key>CFBundleName</key>
+	<string>Selected</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<!-- ⚠⚠ 版本号 / 构建号**由 `build_app.sh` 在打包时自动写入**（2026-10-08 起）——
+	     不要再手改这两处：手改必然漂（日期与打包时刻无关；版本号没人记得每次 +1），
+	     而系统「关于」面板会把两键并排显示出来。
+	     规则与理由都写在 `build_app.sh` 那一段注释里，这里只留结论：
+	     · CFBundleShortVersionString：语义化 `x.y.z`，**每次 release 打包末位 +1**；
+	     · CFBundleVersion：**真实打包日期**（北京时间 yyyyMMdd），同一天第二次起为
+	       `yyyyMMdd.2` / `.3`…（TN2420：macOS 同一 release train 不许复用 build 号）。
+	     ⚠ 两键**不许同值** —— `(版本, 构建)` 组合唯一即可，语义不同别混成一个 key。
+	     ⚠ 历史教训（2026-10-08）：此前是手写日期式（`20261007` → `20261011`），
+	       而 `20261011` 比实际日期超前 3 天 ⇒ 系统面板显示 `版本 0.4.46 (20261011)`。
+	     ⚠⚠ **本文件里的注释很脆**：用 `PlistBuddy` / `plutil` **写**这份 plist 会把注释
+	       与键序一起吞掉（2026-10-08 与 2026-11-24 各实测踩过一次）。⇒ 打包脚本用 `sed`
+	       按行替换两个值，并读回校验 + 断言注释仍在（见 build_app.sh）。改这两键请走脚本。
+	     ⚠ 2026-11-24 那次误用 `PlistBuddy -c Set` 把注释全吞了，本段是按旧内容重建的。 -->
+	<key>CFBundleVersion</key>
+	<string>20261124</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>26.0</string>
+	<key>NSUserNotificationsUsageDescription</key>
+	<string>用于推送选股结果、卖出窗口提醒与风险预警</string>
+	<!-- ⚠ 2026-10-07（审查 P2「Info.plist 缺键」）：补 2 个键。
+	     报告写的是「缺 3 键」但只列出 2 个名字 ⇒ 实测第三个（`CFBundleDisplayName`）
+	     **本来就存在**。逐个核实后确认只缺这 2 个，不为了凑数再加。 -->
+
+	<!-- App Store Connect 用来归类本 App（财务 / 效率工具 / 金融…）。
+	     选 `public.app-category.finance`：本 App 是 A 股选股工具，与个人财务同族；
+	     选错只影响上架后的检索归类，不影响功能，但既然要提审就该填对。 -->
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.finance</string>
+
+	<!-- 版权声明。⚠ **必须与仓库根 LICENSE 一致**（GNU GPL v3.0）——
+	     写 public domain / Unlicense 会与 LICENSE 矛盾，而 GPL 的授权链正依赖这份版权声明；
+	     第三方组件（BSD-3 / MIT）是**别人的**版权，写在这里会被误解。
+	     第三方的完整声明在 `Contents/Resources/THIRD_PARTY_NOTICES.txt`
+	     （由 `Tools/gen_third_party_notices.sh` 在构建时生成，见 P1-25）；
+	     GPL-3.0 全文随包放在 `Contents/Resources/LICENSE.txt`（GPL §4 要求随二进制交付许可文本）。 -->
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright (C) 2026 gexiaosen. Licensed under the GNU General Public License v3.0 (GPL-3.0). Third-party components: see THIRD_PARTY_NOTICES.txt.</string>
+
+	<!-- ⚠⚠ 2026-10-08（老板实机反馈「系统左上角都是英文」）：**声明中文为唯一界面语言**。
+
+	     事故形态：本 App 从未声明任何本地化（既无 `.lproj`、也无 `CFBundleLocalizations`）
+	     ⇒ 实测 `Bundle.main.preferredLocalizations == ["en"]`（开发区域默认值）
+	     ⇒ **系统提供的菜单**（关于 Selected / 设置… / 服务 / 隐藏 / 退出 + 编辑 / 显示 /
+	     窗口 / 帮助）与系统面板（打开/保存、日期选择器、通知）一律按**英文**渲染，
+	     与"中文为唯一界面语言"这条产品决策**直接矛盾**（README 与功能说明都写着中文唯一）。
+
+	     修法：`CFBundleDevelopmentRegion` = zh_CN + `CFBundleLocalizations` = [zh-Hans]
+	     ⇒ 实测同一份包改动前后：`preferredLocalizations` 由 `["en"]` 变 `["zh-Hans"]`，
+	     进一步问 AppKit 自己解析出的语言是 `["zh_CN"]`（映射到 AppKit 的 `zh_CN.lproj`），
+	     标准菜单随之取中文串。
+
+	     ⚠ 有意保持英文的两处：App 名 `Selected`（CFBundleDisplayName，是名字不是文案）、
+	       以及上面的 `NSHumanReadableCopyright`（法律声明，护栏 `plist_keys` 钉住
+	       必须含 GNU General Public License / GPL-3.0）。
+	     ⚠ 这两键被删掉**不会让任何测试变红**，只会让菜单悄悄变回英文 ⇒ 护栏 `plist_keys` 一起钉住。 -->
+	<key>CFBundleDevelopmentRegion</key>
+	<string>zh_CN</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>zh-Hans</string>
+	</array>
+
+	<!-- ⚠⚠ 自动更新（Sparkle 2）。三个键缺一不可：
+	     · SUFeedURL：指向 GitHub 最新 Release 的 `appcast.xml` 资产（同名覆盖，URL 永久稳定）。
+	       仓库必须是**公开**的 —— Sparkle 用匿名 URLSession 拉 feed，私有仓会 401。
+	     · SUPublicEDKey：DMG 的 EdDSA 公钥（与 MiscKit 共用同一把 Sparkle 密钥；
+	       官方说明「一个签名密钥可用于多个 App」）。私钥只在本机钥匙串与 GitHub Secrets，
+	       **绝不进仓库**。
+	     · SUEnableAutomaticChecks：默认开启每日静默检查（不弹授权框，见 `UpdateCenter` 的
+	       `QuietUserDriver` 与 `updaterShouldPromptForPermissionToCheck`）。
+	     `SUAutomaticallyUpdate=false`：发现新版只提示，**不静默安装**（用户自己点确认）。 -->
+	<key>SUFeedURL</key>
+	<string>https://github.com/gexiaosen/Selected/releases/latest/download/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>7nh4PtJHOhvw9BPmzXe/CZbk2VvzqsMuG0+dpUiDh5k=</string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUAutomaticallyUpdate</key>
+	<false/>
+</dict>
+</plist>

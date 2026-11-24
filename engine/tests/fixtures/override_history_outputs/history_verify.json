@@ -1,0 +1,64 @@
+[
+ {
+  "compare": null,
+  "date": "2026-09-11",
+  "iterate": null,
+  "predict": {
+   "is_empty_day": 0,
+   "market_env": {},
+   "overall": [],
+   "predict_date": "2026-09-14",
+   "predict_time": "09:30",
+   "sel_date": "2026-09-11",
+   "status": "ok",
+   "stocks": [
+    {
+     "code": "000032",
+     "name": "深桑达A",
+     "predict_direction": "上午强，10:30-11:30冲高",
+     "signal_type": "strongest"
+    },
+    {
+     "code": "000055",
+     "name": "方大集团",
+     "predict_direction": "午后修复，尾盘卖出",
+     "signal_type": "pulse"
+    },
+    {
+     "code": "000088",
+     "name": "盐田港",
+     "predict_direction": "暴跌日不操作",
+     "signal_type": "pulse"
+    }
+   ]
+  },
+  "review": null,
+  "rounds": [
+   {
+    "run_time": "2026-09-11 14:15:00",
+    "slot": 1,
+    "slot_label": "14:15",
+    "tier1_count": 2,
+    "tier2_count": 0
+   },
+   {
+    "run_time": "2026-09-11 14:30:00",
+    "slot": 2,
+    "slot_label": "14:30",
+    "tier1_count": 2,
+    "tier2_count": 0
+   },
+   {
+    "run_time": "2026-09-11 14:45:00",
+    "slot": 3,
+    "slot_label": "14:45",
+    "tier1_count": 2,
+    "tier2_count": 0
+   }
+  ],
+  "verify": {
+   "sel_date": "2026-09-11",
+   "verify_time": "11:56"
+  }
+ }
+]

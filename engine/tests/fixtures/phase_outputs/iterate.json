@@ -1,0 +1,65 @@
+{
+ "counter": 0,
+ "data_mode": "live",
+ "empty_trend": {
+  "daily": [
+   {
+    "date": "2026-09-14",
+    "is_empty": false,
+    "is_no_participation": false,
+    "participating": 2,
+    "stocks": 2
+   },
+   {
+    "date": "2026-09-10",
+    "is_empty": false,
+    "is_no_participation": false,
+    "participating": 2,
+    "stocks": 2
+   },
+   {
+    "date": "2026-09-08",
+    "is_empty": false,
+    "is_no_participation": false,
+    "participating": 2,
+    "stocks": 2
+   },
+   {
+    "date": "2026-09-04",
+    "is_empty": false,
+    "is_no_participation": false,
+    "participating": 2,
+    "stocks": 2
+   }
+  ],
+  "empty_days": 0,
+  "empty_ratio": 0.0,
+  "no_participation_days": 0,
+  "total_days": 4
+ },
+ "four_layer_avg": {
+  "ceiling": 80.0,
+  "close": 55.0,
+  "snapshot": 40.0,
+  "window": 62.0
+ },
+ "group_analysis": {
+  "consensus": {
+   "count": 3,
+   "winrate": 66.7
+  },
+  "pulse": {
+   "count": 3,
+   "winrate": 66.7
+  }
+ },
+ "insights": [
+  "窗口可用胜率(62.0%)显著高于快照胜率(40.0%) → 当前卖出窗口合理，10点验证过早",
+  "策略上限胜率(80.0%)显著高于窗口可用胜率(62.0%) → 卖出窗口可能偏窄，考虑扩大窗口或分批卖出",
+  "本报告仅输出建议，不自动修改任何参数；人工确认后在参数中心手动调整"
+ ],
+ "is_empty_day_report": false,
+ "status": "ok",
+ "trigger_date": "2026-09-14",
+ "trigger_time": "10:22"
+}

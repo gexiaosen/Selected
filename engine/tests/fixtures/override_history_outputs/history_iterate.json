@@ -1,0 +1,48 @@
+[
+ {
+  "compare": null,
+  "date": "2026-09-14",
+  "iterate": {
+   "counter": 0,
+   "insights": [
+    "窗口可用胜率(62.0%)显著高于快照胜率(40.0%) → 当前卖出窗口合理，10点验证过早",
+    "策略上限胜率(80.0%)显著高于窗口可用胜率(62.0%) → 卖出窗口可能偏窄，考虑扩大窗口或分批卖出",
+    "本报告仅输出建议，不自动修改任何参数；人工确认后在参数中心手动调整"
+   ],
+   "trigger_date": "2026-09-14"
+  },
+  "predict": null,
+  "review": {
+   "four_layer": {
+    "ceiling": {
+     "avg_profit": 1,
+     "total": 10,
+     "winrate": 80,
+     "wins": 80
+    },
+    "close": {
+     "avg_profit": 1,
+     "total": 10,
+     "winrate": 55,
+     "wins": 55
+    },
+    "snapshot": {
+     "avg_profit": 1,
+     "total": 10,
+     "winrate": 40,
+     "wins": 40
+    },
+    "window": {
+     "avg_profit": 1,
+     "total": 10,
+     "winrate": 62,
+     "wins": 62
+    }
+   },
+   "review_time": "15:05",
+   "sel_date": "2026-09-14"
+  },
+  "rounds": [],
+  "verify": null
+ }
+]

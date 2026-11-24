@@ -1,0 +1,103 @@
+{
+ "is_empty_day": false,
+ "market_env": {
+  "light": "红灯",
+  "light_desc": "大盘连跌≥2日，观望为主",
+  "open_status": "低开",
+  "sh_3d_decline_count": 2,
+  "sh_3d_trend": "连续3日下跌（昨日-1.18%且今日-0.19%）",
+  "sh_change_pct": -0.19,
+  "sh_consecutive_decline": true,
+  "sh_ok": true,
+  "sh_open_pct": -0.54,
+  "us_market": "道琼斯+1.0% 纳指+1.0%"
+ },
+ "overall": [
+  "红灯：大盘连跌≥2日，建议空仓观望，不进场。"
+ ],
+ "persistence_verified": true,
+ "predict_date": "2026-09-14",
+ "predict_time": "10:22",
+ "sel_date": "2026-09-11",
+ "status": "ok",
+ "stocks": [
+  {
+   "code": "000032",
+   "current_pct": 2.06,
+   "current_price": 13.89,
+   "name": "深桑达A",
+   "open_pct": -0.07,
+   "position_advice": "空仓观望",
+   "predict_direction": "暴跌日不操作",
+   "risk_level": "极高",
+   "scores": {
+    "1": 88.0,
+    "2": 91.0,
+    "3": 95.0
+   },
+   "sel_price": 13.5,
+   "sell_window_end": "--",
+   "sell_window_start": "--",
+   "signal_type": "strongest",
+   "signal_type_name": "最强信号",
+   "signal_verified": true,
+   "stop_loss_price": 13.5,
+   "strategy_key": "crash",
+   "target_price": 13.5,
+   "turnover": 1.75,
+   "volume_ratio": 1.17
+  },
+  {
+   "code": "000055",
+   "current_pct": 1.13,
+   "current_price": 3.58,
+   "name": "方大集团",
+   "open_pct": -0.85,
+   "position_advice": "空仓观望",
+   "predict_direction": "暴跌日不操作",
+   "risk_level": "极高",
+   "scores": {
+    "1": 76.0,
+    "2": 72.0,
+    "3": null
+   },
+   "sel_price": 3.7,
+   "sell_window_end": "--",
+   "sell_window_start": "--",
+   "signal_type": "pulse",
+   "signal_type_name": "脉冲信号",
+   "signal_verified": true,
+   "stop_loss_price": 3.7,
+   "strategy_key": "crash",
+   "target_price": 3.7,
+   "turnover": 1.23,
+   "volume_ratio": 1.22
+  },
+  {
+   "code": "000088",
+   "current_pct": 1.09,
+   "current_price": 4.63,
+   "name": "盐田港",
+   "open_pct": -0.66,
+   "position_advice": "空仓观望",
+   "predict_direction": "暴跌日不操作",
+   "risk_level": "极高",
+   "scores": {
+    "1": null,
+    "2": null,
+    "3": 70.0
+   },
+   "sel_price": 9.1,
+   "sell_window_end": "--",
+   "sell_window_start": "--",
+   "signal_type": "pulse",
+   "signal_type_name": "脉冲信号",
+   "signal_verified": true,
+   "stop_loss_price": 9.1,
+   "strategy_key": "crash",
+   "target_price": 9.1,
+   "turnover": 1.22,
+   "volume_ratio": 0.87
+  }
+ ]
+}
